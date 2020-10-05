@@ -1,20 +1,12 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-grid>
+  <ion-row>
+    <ion-button id="P1" color="tertiary" (click)="lowerLife('p1Life')">{{p1Life}}</ion-button>
+    <ion-button id="P2" color="danger" (click)="lowerLife('p2Life')">{{p2Life}}</ion-button>
+  </ion-row>
+  <ion-row>
+    <ion-button id="P3" (click)="lowerLife('p3Life')">{{p3Life}}</ion-button>
+    <ion-button id="P4" (click)="lowerLife('p4Life')">{{p4Life}}</ion-button>
+  </ion-row>
+</ion-grid>
 </ion-content>
