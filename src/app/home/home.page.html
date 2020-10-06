@@ -1,12 +1,58 @@
 <ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col style="background-color: #ff0000">
+        <div>
+              {{p1Life}}
+        </div>
+      </ion-col>
+      <ion-col style="background-color: #ffffff;">
+        <div>
+          {{p2Life}}
+    </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="background-color: #5260ff;">
+        <div>
+          {{p3Life}}
+    </div>
+      </ion-col>
+      <ion-col style="background-color: #2dd36f;">
+        <div>
+          {{p4Life}}
+    </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-content>
+  
+
+<!-- <ion-content [fullscreen]="true">
 <ion-grid>
   <ion-row>
-    <ion-button id="P1" color="tertiary" (click)="lowerLife('p1Life')">{{p1Life}}</ion-button>
-    <ion-button id="P2" color="danger" (click)="lowerLife('p2Life')">{{p2Life}}</ion-button>
+    <ion-col style="background-color: #ff0000;">
+      <ion-button  color="primary" (click)="lowerLife('p1Life')">-</ion-button>
+      <span>{{p1Life}}</span>
+      <ion-button color="primary" (click)="raiseLife('p1Life')">+</ion-button>
+    </ion-col>
+    <ion-col style="background-color: #ffffff;">
+      <ion-button  color="secondary" (click)="lowerLife('p2Life')">-</ion-button>
+      <span>{{p2Life}}</span>
+      <ion-button color="secondary" (click)="raiseLife('p2Life')">+</ion-button>
+    </ion-col>
   </ion-row>
   <ion-row>
-    <ion-button id="P3" (click)="lowerLife('p3Life')">{{p3Life}}</ion-button>
-    <ion-button id="P4" (click)="lowerLife('p4Life')">{{p4Life}}</ion-button>
+    <ion-col style="background-color: #5260ff;">
+      <ion-button  color="tertiary" (click)="lowerLife('p3Life')">-</ion-button>
+      <span>{{p3Life}}</span>
+      <ion-button color="tertiary" (click)="raiseLife('p3Life')">+</ion-button>
+    </ion-col>
+    <ion-col style="background-color: #2dd36f;">
+      <ion-button  color="success" (click)="lowerLife('p4Life')">-</ion-button>
+      <span>{{p4Life}}</span>
+      <ion-button color="success" (click)="raiseLife('p4Life')">+</ion-button>
+    </ion-col>
   </ion-row>
 </ion-grid>
-</ion-content>
+</ion-content> -->
