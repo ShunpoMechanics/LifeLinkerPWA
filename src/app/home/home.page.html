@@ -1,32 +1,89 @@
 <ion-content [fullscreen]="true">
+  <div (click)="promptRestart()">
+    New Game
+  </div>
   <ion-grid>
     <ion-row>
-      <ion-col style="background-color: #ff0000">
+      <ion-col (click)="lowerLife('p1Life')">
+        -
+      </ion-col>
+      <ion-col>
+        {{p1Life}}
+      </ion-col>
+      <ion-col (click)="raiseLife('p1Life')">
+        +
+      </ion-col>
+      <ion-col (click)="lowerLife('p2Life')">
+        -
+      </ion-col>
+      <ion-col>
+        {{p2Life}}
+      </ion-col>
+      <ion-col (click)="raiseLife('p2Life')">
+        +
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row> -->
+      <!-- Add commander damage columns, use the left and right numbers to increment and decrement-->
+    <!-- </ion-row> -->
+    <!-- <ion-row> -->
+      <!-- Infect damage columns -->
+    <!-- </ion-row> -->
+    <!-- <ion-row> -->
+      <!-- Add commander damage columns, use the left and right numbers to increment and decrement-->
+    <!-- </ion-row> -->
+    <ion-row>
+      <ion-col (click)="lowerLife('p3Life')">
+        -
+      </ion-col>
+      <ion-col>
+        {{p3Life}}
+      </ion-col>
+      <ion-col (click)="raiseLife('p3Life')">
+        +
+      </ion-col>
+      <ion-col (click)="lowerLife('p4Life')">
+        -
+      </ion-col>
+      <ion-col>
+        {{p4Life}}
+      </ion-col>
+      <ion-col (click)="raiseLife('p4Life')">
+        +
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div>
+    <!-- Jonathan Correa -->
+  </div>
+</ion-content>
+
+<!-- <ion-grid>
+    <ion-row>
+      <ion-col id="divOne" (click)="takeAction($event,'p1Life')" style="background-color: #ff0000">
         <div>
-              {{p1Life}}
+            {{p1Life}}
         </div>
       </ion-col>
-      <ion-col style="background-color: #ffffff;">
+      <ion-col (click)="takeAction($event,'p2Life')" style="background-color: #ffffff;">
         <div>
           {{p2Life}}
     </div>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col style="background-color: #5260ff;">
+      <ion-col (click)="takeAction($event,'p3Life')" style="background-color: #5260ff;">
         <div>
           {{p3Life}}
     </div>
       </ion-col>
-      <ion-col style="background-color: #2dd36f;">
+      <ion-col (click)="takeAction($event,'p4Life')" style="background-color: #2dd36f;">
         <div>
           {{p4Life}}
     </div>
       </ion-col>
     </ion-row>
-  </ion-grid>
-  </ion-content>
-  
+  </ion-grid> -->
 
 <!-- <ion-content [fullscreen]="true">
 <ion-grid>
