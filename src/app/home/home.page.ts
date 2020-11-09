@@ -4,6 +4,9 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { ToastController, AlertController } from '@ionic/angular';
 import { concat, interval, Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
+import { Player } from '../models/player';
+import { GameService } from '../services/game/game.service';
+import { PlayerProfileService } from '../services/playerProfile/player-service.service';
 
 
 @Component({
@@ -13,15 +16,72 @@ import { first } from 'rxjs/operators';
 })
 export class HomePage implements OnInit {
 
-  p1Life = 40;
-  p1: Record<string, number>;
-  p2Life = 40;
-  p3Life = 40;
-  p4Life = 40;
+  p1Name: string;
+  p1: Player = {
+    position: 1,
+    life: 40,
+    commanderDamageFromPlayer1First: 0,
+    commanderDamageFromPlayer1Second: 0,
+    commanderDamageFromPlayer2First: 0,
+    commanderDamageFromPlayer2Second: 0,
+    commanderDamageFromPlayer3First: 0,
+    commanderDamageFromPlayer3Second: 0,
+    commanderDamageFromPlayer4First: 0,
+    commanderDamageFromPlayer4Second: 0,
+    infect: 0,
+    partners: false
+  };
+  p2Name: string;
+  p2: Player = {
+    position: 2,
+    life: 40,
+    commanderDamageFromPlayer1First: 0,
+    commanderDamageFromPlayer1Second: 0,
+    commanderDamageFromPlayer2First: 0,
+    commanderDamageFromPlayer2Second: 0,
+    commanderDamageFromPlayer3First: 0,
+    commanderDamageFromPlayer3Second: 0,
+    commanderDamageFromPlayer4First: 0,
+    commanderDamageFromPlayer4Second: 0,
+    infect: 0,
+    partners: false
+  };
+  p3Name: string;
+  p3: Player = {
+    position: 3,
+    life: 40,
+    commanderDamageFromPlayer1First: 0,
+    commanderDamageFromPlayer1Second: 0,
+    commanderDamageFromPlayer2First: 0,
+    commanderDamageFromPlayer2Second: 0,
+    commanderDamageFromPlayer3First: 0,
+    commanderDamageFromPlayer3Second: 0,
+    commanderDamageFromPlayer4First: 0,
+    commanderDamageFromPlayer4Second: 0,
+    infect: 0,
+    partners: false
+  };
+  p4Name: string;
+  p4: Player = {
+    position: 4,
+    life: 40,
+    commanderDamageFromPlayer1First: 0,
+    commanderDamageFromPlayer1Second: 0,
+    commanderDamageFromPlayer2First: 0,
+    commanderDamageFromPlayer2Second: 0,
+    commanderDamageFromPlayer3First: 0,
+    commanderDamageFromPlayer3Second: 0,
+    commanderDamageFromPlayer4First: 0,
+    commanderDamageFromPlayer4Second: 0,
+    infect: 0,
+    partners: false
+  };
+
   subscriptions: Subscription[] = [];
 
   constructor(private screenOrientation: ScreenOrientation, private toastController: ToastController,
-              private updater: SwUpdate, private alertController: AlertController, private appRef: ApplicationRef) {
+              private updater: SwUpdate, private alertController: AlertController, private appRef: ApplicationRef,
+              public player: PlayerProfileService, public game: GameService) {
     // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
   }
   ngOnInit(): void {
@@ -49,7 +109,7 @@ export class HomePage implements OnInit {
     const updateMessage = e.available.appData['updateMessage'];
     const alert = await this.alertController.create({
       header: 'Update available!',
-      message: 'A new version of the application is available. ' + '(Details: ${updateMessage})' + 'Click OK to update now.',
+      message: 'A new version of the application is available. Press OK to update now.',
       buttons: [
         {
           text: 'Not Now',
@@ -82,20 +142,24 @@ export class HomePage implements OnInit {
     toast.present();
   }
 
+  setPlayer(player: Player, playerName: string) {
+    this.player.setPlayer(player, playerName);
+  }
+
   lowerLife(id: string) {
     switch (id)
     {
       case 'p1Life':
-        this.p1Life--;
+        this.p1.life--;
         break;
       case 'p2Life':
-        this.p2Life--;
+        this.p2.life--;
         break;
       case 'p3Life':
-        this.p3Life--;
+        this.p3.life--;
         break;
       case 'p4Life':
-        this.p4Life--;
+        this.p4.life--;
         break;
     }
   }
@@ -104,16 +168,16 @@ export class HomePage implements OnInit {
     switch (id)
     {
       case 'p1Life':
-        this.p1Life++;
+        this.p1.life++;
         break;
       case 'p2Life':
-        this.p2Life++;
+        this.p2.life++;
         break;
       case 'p3Life':
-        this.p3Life++;
+        this.p3.life++;
         break;
       case 'p4Life':
-        this.p4Life++;
+        this.p4.life++;
         break;
     }
   }
@@ -125,9 +189,57 @@ export class HomePage implements OnInit {
   }
 
   resetLife() {
-    this.p1Life = 40;
-    this.p2Life = 40;
-    this.p3Life = 40;
-    this.p4Life = 40;
+    this.p1.life = 40;
+    this.p2.life = 40;
+    this.p3.life = 40;
+    this.p4.life = 40;
+
+    this.p1.commanderDamageFromPlayer1First = 0;
+    this.p1.commanderDamageFromPlayer1Second = 0;
+    this.p1.commanderDamageFromPlayer2First = 0;
+    this.p1.commanderDamageFromPlayer2Second = 0;
+    this.p1.commanderDamageFromPlayer3First = 0;
+    this.p1.commanderDamageFromPlayer3Second = 0;
+    this.p1.commanderDamageFromPlayer4First = 0;
+    this.p1.commanderDamageFromPlayer4Second = 0;
+    this.p1.infect = 0;
+    // this.p1.partners = false;
+    // this.game.game.player1Partners = false;
+
+    this.p2.commanderDamageFromPlayer1First = 0;
+    this.p2.commanderDamageFromPlayer1Second = 0;
+    this.p2.commanderDamageFromPlayer2First = 0;
+    this.p2.commanderDamageFromPlayer2Second = 0;
+    this.p2.commanderDamageFromPlayer3First = 0;
+    this.p2.commanderDamageFromPlayer3Second = 0;
+    this.p2.commanderDamageFromPlayer4First = 0;
+    this.p2.commanderDamageFromPlayer4Second = 0;
+    this.p2.infect = 0;
+    // this.p2.partners = false;
+    // this.game.game.player2Partners = false;
+
+    this.p3.commanderDamageFromPlayer1First = 0;
+    this.p3.commanderDamageFromPlayer1Second = 0;
+    this.p3.commanderDamageFromPlayer2First = 0;
+    this.p3.commanderDamageFromPlayer2Second = 0;
+    this.p3.commanderDamageFromPlayer3First = 0;
+    this.p3.commanderDamageFromPlayer3Second = 0;
+    this.p3.commanderDamageFromPlayer4First = 0;
+    this.p3.commanderDamageFromPlayer4Second = 0;
+    this.p3.infect = 0;
+    // this.p3.partners = false;
+    // this.game.game.player3Partners = false;
+
+    this.p4.commanderDamageFromPlayer1First = 0;
+    this.p4.commanderDamageFromPlayer1Second = 0;
+    this.p4.commanderDamageFromPlayer2First = 0;
+    this.p4.commanderDamageFromPlayer2Second = 0;
+    this.p4.commanderDamageFromPlayer3First = 0;
+    this.p4.commanderDamageFromPlayer3Second = 0;
+    this.p4.commanderDamageFromPlayer4First = 0;
+    this.p4.commanderDamageFromPlayer4Second = 0;
+    this.p4.infect = 0;
+    // this.p4.partners = false;
+    // this.game.game.player4Partners = false;
   }
 }

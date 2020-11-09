@@ -3,12 +3,20 @@
     New Game
   </div>
   <ion-grid>
+    <ion-row style="height: 12px">
+      <ion-col>
+        {{game.game.player1Name}}
+      </ion-col>
+      <ion-col>
+        {{game.game.player2Name}}
+      </ion-col> 
+    </ion-row>
     <ion-row>
       <ion-col (click)="lowerLife('p1Life')">
         -
       </ion-col>
-      <ion-col>
-        {{p1Life}}
+      <ion-col routerLink="/profile" (click)="this.setPlayer(p1, p1Name)">
+        {{p1.life}}
       </ion-col>
       <ion-col (click)="raiseLife('p1Life')">
         +
@@ -16,28 +24,19 @@
       <ion-col (click)="lowerLife('p2Life')">
         -
       </ion-col>
-      <ion-col>
-        {{p2Life}}
+      <ion-col routerLink="/profile" (click)="this.setPlayer(p2, p2Name)">
+        {{p2.life}}
       </ion-col>
       <ion-col (click)="raiseLife('p2Life')">
         +
       </ion-col>
     </ion-row>
-    <!-- <ion-row> -->
-      <!-- Add commander damage columns, use the left and right numbers to increment and decrement-->
-    <!-- </ion-row> -->
-    <!-- <ion-row> -->
-      <!-- Infect damage columns -->
-    <!-- </ion-row> -->
-    <!-- <ion-row> -->
-      <!-- Add commander damage columns, use the left and right numbers to increment and decrement-->
-    <!-- </ion-row> -->
     <ion-row>
       <ion-col (click)="lowerLife('p3Life')">
         -
       </ion-col>
-      <ion-col>
-        {{p3Life}}
+      <ion-col routerLink="/profile" (click)="this.setPlayer(p3, p3Name)">
+        {{p3.life}}
       </ion-col>
       <ion-col (click)="raiseLife('p3Life')">
         +
@@ -45,12 +44,20 @@
       <ion-col (click)="lowerLife('p4Life')">
         -
       </ion-col>
-      <ion-col>
-        {{p4Life}}
+      <ion-col routerLink="/profile" (click)="this.setPlayer(p4, p4Name)">
+        {{p4.life}}
       </ion-col>
       <ion-col (click)="raiseLife('p4Life')">
         +
       </ion-col>
+    </ion-row>
+    <ion-row style="height: 12px">
+      <ion-col>
+        {{game.game.player3Name}}
+      </ion-col>
+      <ion-col>
+        {{game.game.player4Name}}
+      </ion-col> 
     </ion-row>
   </ion-grid>
   <div>
