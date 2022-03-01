@@ -16,6 +16,7 @@ import { PlayerProfileService } from '../services/playerProfile/player-service.s
 })
 export class HomePage implements OnInit {
 
+  playerCount = 4;
   p1Name: string;
   p1: Player = {
     position: 1,
@@ -28,6 +29,10 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer3Second: 0,
     commanderDamageFromPlayer4First: 0,
     commanderDamageFromPlayer4Second: 0,
+    commanderDamageFromPlayer5First: 0,
+    commanderDamageFromPlayer5Second: 0,
+    commanderDamageFromPlayer6First: 0,
+    commanderDamageFromPlayer6Second: 0,
     infect: 0,
     partners: false
   };
@@ -43,6 +48,10 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer3Second: 0,
     commanderDamageFromPlayer4First: 0,
     commanderDamageFromPlayer4Second: 0,
+    commanderDamageFromPlayer5First: 0,
+    commanderDamageFromPlayer5Second: 0,
+    commanderDamageFromPlayer6First: 0,
+    commanderDamageFromPlayer6Second: 0,
     infect: 0,
     partners: false
   };
@@ -58,6 +67,10 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer3Second: 0,
     commanderDamageFromPlayer4First: 0,
     commanderDamageFromPlayer4Second: 0,
+    commanderDamageFromPlayer5First: 0,
+    commanderDamageFromPlayer5Second: 0,
+    commanderDamageFromPlayer6First: 0,
+    commanderDamageFromPlayer6Second: 0,
     infect: 0,
     partners: false
   };
@@ -73,6 +86,48 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer3Second: 0,
     commanderDamageFromPlayer4First: 0,
     commanderDamageFromPlayer4Second: 0,
+    commanderDamageFromPlayer5First: 0,
+    commanderDamageFromPlayer5Second: 0,
+    commanderDamageFromPlayer6First: 0,
+    commanderDamageFromPlayer6Second: 0,
+    infect: 0,
+    partners: false
+  };
+  p5Name: string;
+  p5: Player = {
+    position: 5,
+    life: 40,
+    commanderDamageFromPlayer1First: 0,
+    commanderDamageFromPlayer1Second: 0,
+    commanderDamageFromPlayer2First: 0,
+    commanderDamageFromPlayer2Second: 0,
+    commanderDamageFromPlayer3First: 0,
+    commanderDamageFromPlayer3Second: 0,
+    commanderDamageFromPlayer4First: 0,
+    commanderDamageFromPlayer4Second: 0,
+    commanderDamageFromPlayer5First: 0,
+    commanderDamageFromPlayer5Second: 0,
+    commanderDamageFromPlayer6First: 0,
+    commanderDamageFromPlayer6Second: 0,
+    infect: 0,
+    partners: false
+  };
+  p6Name: string;
+  p6: Player = {
+    position: 6,
+    life: 40,
+    commanderDamageFromPlayer1First: 0,
+    commanderDamageFromPlayer1Second: 0,
+    commanderDamageFromPlayer2First: 0,
+    commanderDamageFromPlayer2Second: 0,
+    commanderDamageFromPlayer3First: 0,
+    commanderDamageFromPlayer3Second: 0,
+    commanderDamageFromPlayer4First: 0,
+    commanderDamageFromPlayer4Second: 0,
+    commanderDamageFromPlayer5First: 0,
+    commanderDamageFromPlayer5Second: 0,
+    commanderDamageFromPlayer6First: 0,
+    commanderDamageFromPlayer6Second: 0,
     infect: 0,
     partners: false
   };
@@ -81,7 +136,7 @@ export class HomePage implements OnInit {
 
   constructor(private screenOrientation: ScreenOrientation, private toastController: ToastController,
               private updater: SwUpdate, private alertController: AlertController, private appRef: ApplicationRef,
-              public player: PlayerProfileService, public game: GameService) {
+              public player: PlayerProfileService, public gameService: GameService) {
     // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
   }
   ngOnInit(): void {
@@ -161,6 +216,12 @@ export class HomePage implements OnInit {
       case 'p4Life':
         this.p4.life--;
         break;
+      case 'p5Life':
+        this.p5.life--;
+        break;
+      case 'p6Life':
+        this.p6.life--;
+        break;
     }
   }
 
@@ -179,6 +240,12 @@ export class HomePage implements OnInit {
       case 'p4Life':
         this.p4.life++;
         break;
+      case 'p5Life':
+        this.p5.life++;
+        break;
+      case 'p6Life':
+        this.p6.life++;
+        break;
     }
   }
 
@@ -188,11 +255,18 @@ export class HomePage implements OnInit {
     }
   }
 
+  addPlayer() {
+    if(this.playerCount < 8)
+      this.playerCount++;
+  }
+
   resetLife() {
     this.p1.life = 40;
     this.p2.life = 40;
     this.p3.life = 40;
     this.p4.life = 40;
+    this.p5.life = 40;
+    this.p6.life = 40;
 
     this.p1.commanderDamageFromPlayer1First = 0;
     this.p1.commanderDamageFromPlayer1Second = 0;
@@ -239,6 +313,30 @@ export class HomePage implements OnInit {
     this.p4.commanderDamageFromPlayer4First = 0;
     this.p4.commanderDamageFromPlayer4Second = 0;
     this.p4.infect = 0;
+    // this.p4.partners = false;
+    // this.game.game.player4Partners = false;
+
+    this.p5.commanderDamageFromPlayer1First = 0;
+    this.p5.commanderDamageFromPlayer1Second = 0;
+    this.p5.commanderDamageFromPlayer2First = 0;
+    this.p5.commanderDamageFromPlayer2Second = 0;
+    this.p5.commanderDamageFromPlayer3First = 0;
+    this.p5.commanderDamageFromPlayer3Second = 0;
+    this.p5.commanderDamageFromPlayer4First = 0;
+    this.p5.commanderDamageFromPlayer4Second = 0;
+    this.p5.infect = 0;
+    // this.p4.partners = false;
+    // this.game.game.player4Partners = false;
+
+    this.p6.commanderDamageFromPlayer1First = 0;
+    this.p6.commanderDamageFromPlayer1Second = 0;
+    this.p6.commanderDamageFromPlayer2First = 0;
+    this.p6.commanderDamageFromPlayer2Second = 0;
+    this.p6.commanderDamageFromPlayer3First = 0;
+    this.p6.commanderDamageFromPlayer3Second = 0;
+    this.p6.commanderDamageFromPlayer4First = 0;
+    this.p6.commanderDamageFromPlayer4Second = 0;
+    this.p6.infect = 0;
     // this.p4.partners = false;
     // this.game.game.player4Partners = false;
   }

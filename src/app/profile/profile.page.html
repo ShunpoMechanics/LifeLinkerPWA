@@ -2,51 +2,79 @@
   <ion-toolbar>
     <ion-row>
     <ion-back-button></ion-back-button>
-    <ion-input class="toolbar-input" *ngIf="player.position == 1" [(ngModel)]="game.game.player1Name"></ion-input> <!--When text is entered, run setName-->
-    <ion-input *ngIf="player.position == 2" [(ngModel)]="game.game.player2Name"></ion-input> 
-    <ion-input *ngIf="player.position == 3" [(ngModel)]="game.game.player3Name"></ion-input> 
-    <ion-input *ngIf="player.position == 4" [(ngModel)]="game.game.player4Name"></ion-input> 
+    <ion-input class="toolbar-input" *ngIf="player.position == 1" [(ngModel)]="gameService.game.player1Name"></ion-input> <!--When text is entered, run setName-->
+    <ion-input *ngIf="player.position == 2" [(ngModel)]="gameService.game.player2Name"></ion-input> 
+    <ion-input *ngIf="player.position == 3" [(ngModel)]="gameService.game.player3Name"></ion-input> 
+    <ion-input *ngIf="player.position == 4" [(ngModel)]="gameService.game.player4Name"></ion-input> 
+    <ion-input *ngIf="player.position == 5" [(ngModel)]="gameService.game.player5Name"></ion-input> 
+    <ion-input *ngIf="player.position == 6" [(ngModel)]="gameService.game.player6Name"></ion-input> 
   </ion-row>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <!-- Player 1 -->
 <ion-row *ngIf="player.position == 1">
   <ion-row style="padding-left: 5px">
-    Commander's Name: <ion-input [(ngModel)]="game.game.player1Commander1"></ion-input>
+    Commander's Name: <ion-input [(ngModel)]="gameService.game.player1Commander1"></ion-input>
   </ion-row>
-  <ion-row *ngIf="game.game.player1Partners" style="padding-left: 5px">
-    Commander's Name: <ion-input [(ngModel)]="game.game.player1Commander2"></ion-input>
+  <ion-row *ngIf="gameService.game.player1Partners" style="padding-left: 5px">
+    Commander's Name: <ion-input [(ngModel)]="gameService.game.player1Commander2"></ion-input>
   </ion-row>
 </ion-row>
+
+<!-- Player 2 -->
 <ion-row *ngIf="player.position == 2">
   <ion-row style="padding-left: 5px">
-    Commander's Name: <ion-input [(ngModel)]="game.game.player2Commander1"></ion-input>
+    Commander's Name: <ion-input [(ngModel)]="gameService.game.player2Commander1"></ion-input>
   </ion-row>
-  <ion-row *ngIf="game.game.player2Partners" style="padding-left: 5px">
-    Commander's Name: <ion-input [(ngModel)]="game.game.player2Commander2"></ion-input>
+  <ion-row *ngIf="gameService.game.player2Partners" style="padding-left: 5px">
+    Commander's Name: <ion-input [(ngModel)]="gameService.game.player2Commander2"></ion-input>
   </ion-row>
 </ion-row>
+
+<!-- Player 3 -->
 <ion-row *ngIf="player.position == 3">
   <ion-row style="padding-left: 5px">
-    Commander's Name: <ion-input [(ngModel)]="game.game.player3Commander1"></ion-input>
+    Commander's Name: <ion-input [(ngModel)]="gameService.game.player3Commander1"></ion-input>
   </ion-row>
-  <ion-row *ngIf="game.game.player3Partners" style="padding-left: 5px">
-    Commander's Name: <ion-input [(ngModel)]="game.game.player3Commander2"></ion-input>
+  <ion-row *ngIf="gameService.game.player3Partners" style="padding-left: 5px">
+    Commander's Name: <ion-input [(ngModel)]="gameService.game.player3Commander2"></ion-input>
   </ion-row>
 </ion-row>
+
+<!-- Player 4 -->
 <ion-row *ngIf="player.position == 4">
   <ion-row style="padding-left: 5px">
-    Commander's Name: <ion-input [(ngModel)]="game.game.player4Commander1"></ion-input>
+    Commander's Name: <ion-input [(ngModel)]="gameService.game.player4Commander1"></ion-input>
   </ion-row>
-  <ion-row *ngIf="game.game.player4Partners" style="padding-left: 5px">
-    Commander's Name: <ion-input [(ngModel)]="game.game.player4Commander2"></ion-input>
+  <ion-row *ngIf="gameService.game.player4Partners" style="padding-left: 5px">
+    Commander's Name: <ion-input [(ngModel)]="gameService.game.player4Commander2"></ion-input>
   </ion-row>
-</ion-row>
+</ion-row>  
+  <!-- Player 5 -->
+  <ion-row *ngIf="player.position == 5">
+    <ion-row style="padding-left: 5px">
+      Commander's Name: <ion-input [(ngModel)]="gameService.game.player5Commander1"></ion-input>
+    </ion-row>
+    <ion-row *ngIf="gameService.game.player5Partners" style="padding-left: 5px">
+      Commander's Name: <ion-input [(ngModel)]="gameService.game.player5Commander2"></ion-input>
+    </ion-row>
+  </ion-row>
+    <!-- Player 6 -->
+    <ion-row *ngIf="player.position == 6">
+      <ion-row style="padding-left: 5px">
+        Commander's Name: <ion-input [(ngModel)]="gameService.game.player6Commander1"></ion-input>
+      </ion-row>
+      <ion-row *ngIf="gameService.game.player6Partners" style="padding-left: 5px">
+        Commander's Name: <ion-input [(ngModel)]="gameService.game.player6Commander2"></ion-input>
+      </ion-row>    
+    </ion-row>
+    
   <ion-col>Commander Damage</ion-col>
 <ion-row *ngIf="player.position != 1">
   <ion-col>
-    {{game.game.player1Commander1}} :
+    {{gameService.game.player1Commander1}} :
   </ion-col>
   <ion-col (click)="commanderDamageDown(1)">
     -
@@ -57,22 +85,22 @@
   <ion-col (click)="commanderDamageUp(1)">
     +
   </ion-col>
-  <ion-col *ngIf="game.game.player1Partners">
-    {{game.game.player1Commander2}} :
+  <ion-col *ngIf="gameService.game.player1Partners">
+    {{gameService.game.player1Commander2}} :
   </ion-col>
-  <ion-col *ngIf="game.game.player1Partners" (click)="altCommanderDamageDown(1)">
+  <ion-col *ngIf="gameService.game.player1Partners" (click)="altCommanderDamageDown(1)">
     -
   </ion-col>
-  <ion-col *ngIf="game.game.player1Partners">
+  <ion-col *ngIf="gameService.game.player1Partners">
     {{player.commanderDamageFromPlayer1Second}}
   </ion-col>
-  <ion-col *ngIf="game.game.player1Partners" (click)="altCommanderDamageUp(1)">
+  <ion-col *ngIf="gameService.game.player1Partners" (click)="altCommanderDamageUp(1)">
     +
   </ion-col>
 </ion-row>
 <ion-row *ngIf="player.position != 2">
   <ion-col>
-    {{game.game.player2Commander1}} :
+    {{gameService.game.player2Commander1}} :
   </ion-col>
   <ion-col (click)="commanderDamageDown(2)">
     -
@@ -83,22 +111,22 @@
   <ion-col (click)="commanderDamageUp(2)">
     +
   </ion-col>
-  <ion-col *ngIf="game.game.player2Partners">
-    {{game.game.player2Commander2}} :
+  <ion-col *ngIf="gameService.game.player2Partners">
+    {{gameService.game.player2Commander2}} :
   </ion-col>
-  <ion-col *ngIf="game.game.player2Partners" (click)="altCommanderDamageDown(2)">
+  <ion-col *ngIf="gameService.game.player2Partners" (click)="altCommanderDamageDown(2)">
     -
   </ion-col>
-  <ion-col *ngIf="game.game.player2Partners">
+  <ion-col *ngIf="gameService.game.player2Partners">
     {{player.commanderDamageFromPlayer2Second}}
   </ion-col>
-  <ion-col *ngIf="game.game.player2Partners" (click)="altCommanderDamageUp(2)">
+  <ion-col *ngIf="gameService.game.player2Partners" (click)="altCommanderDamageUp(2)">
     +
   </ion-col>
 </ion-row>
 <ion-row *ngIf="player.position != 3">
   <ion-col>
-    {{game.game.player3Commander1}} :
+    {{gameService.game.player3Commander1}} :
   </ion-col>
   <ion-col (click)="commanderDamageDown(3)">
     -
@@ -109,22 +137,22 @@
   <ion-col (click)="commanderDamageUp(3)">
     +
   </ion-col>
-  <ion-col *ngIf="game.game.player3Partners">
-    {{game.game.player3Commander2}} :
+  <ion-col *ngIf="gameService.game.player3Partners">
+    {{gameService.game.player3Commander2}} :
   </ion-col>
-  <ion-col *ngIf="game.game.player3Partners" (click)="altCommanderDamageDown(3)">
+  <ion-col *ngIf="gameService.game.player3Partners" (click)="altCommanderDamageDown(3)">
     -
   </ion-col>
-  <ion-col *ngIf="game.game.player3Partners">
+  <ion-col *ngIf="gameService.game.player3Partners">
     {{player.commanderDamageFromPlayer3Second}}
   </ion-col>
-  <ion-col *ngIf="game.game.player3Partners" (click)="altCommanderDamageUp(3)">
+  <ion-col *ngIf="gameService.game.player3Partners" (click)="altCommanderDamageUp(3)">
     +
   </ion-col>
 </ion-row>
 <ion-row *ngIf="player.position != 4">
   <ion-col>
-    {{game.game.player4Commander1}} :
+    {{gameService.game.player4Commander1}} :
   </ion-col>
   <ion-col (click)="commanderDamageDown(4)">
     -
@@ -135,20 +163,73 @@
   <ion-col (click)="commanderDamageUp(4)">
     +
   </ion-col>
-  <ion-col *ngIf="game.game.player4Partners">
-    {{game.game.player4Commander2}} :
+  <ion-col *ngIf="gameService.game.player4Partners">
+    {{gameService.game.player4Commander2}} :
   </ion-col>
-  <ion-col *ngIf="game.game.player4Partners"  (click)="altCommanderDamageDown(4)">
+  <ion-col *ngIf="gameService.game.player4Partners"  (click)="altCommanderDamageDown(4)">
     -
   </ion-col>
-  <ion-col *ngIf="game.game.player4Partners">
+  <ion-col *ngIf="gameService.game.player4Partners">
     {{player.commanderDamageFromPlayer4Second}}
   </ion-col>
-  <ion-col *ngIf="game.game.player4Partners" (click)="altCommanderDamageUp(4)">
+  <ion-col *ngIf="gameService.game.player4Partners" (click)="altCommanderDamageUp(4)">
     +
   </ion-col>
 </ion-row>
 
+<ion-row *ngIf="player.position != 5">
+  <ion-col>
+    {{gameService.game.player5Commander1}} :
+  </ion-col>
+  <ion-col (click)="commanderDamageDown(5)">
+    -
+  </ion-col>
+  <ion-col>
+    {{player.commanderDamageFromPlayer5First}}
+  </ion-col>
+  <ion-col (click)="commanderDamageUp(5)">
+    +
+  </ion-col>
+  <ion-col *ngIf="gameService.game.player5Partners">
+    {{gameService.game.player5Commander2}} :
+  </ion-col>
+  <ion-col *ngIf="gameService.game.player5Partners"  (click)="altCommanderDamageDown(5)">
+    -
+  </ion-col>
+  <ion-col *ngIf="gameService.game.player5Partners">
+    {{player.commanderDamageFromPlayer5Second}}
+  </ion-col>
+  <ion-col *ngIf="gameService.game.player5Partners" (click)="altCommanderDamageUp(5)">
+    +
+  </ion-col>
+</ion-row>
+
+<ion-row *ngIf="player.position != 6">
+  <ion-col>
+    {{gameService.game.player6Commander1}} :
+  </ion-col>
+  <ion-col (click)="commanderDamageDown(6)">
+    -
+  </ion-col>
+  <ion-col>
+    {{player.commanderDamageFromPlayer6First}}
+  </ion-col>
+  <ion-col (click)="commanderDamageUp(6)">
+    +
+  </ion-col>
+  <ion-col *ngIf="gameService.game.player6Partners">
+    {{gameService.game.player6Commander2}} :
+  </ion-col>
+  <ion-col *ngIf="gameService.game.player6Partners"  (click)="altCommanderDamageDown(6)">
+    -
+  </ion-col>
+  <ion-col *ngIf="gameService.game.player6Partners">
+    {{player.commanderDamageFromPlayer6Second}}
+  </ion-col>
+  <ion-col *ngIf="gameService.game.player6Partners" (click)="altCommanderDamageUp(6)">
+    +
+  </ion-col>
+</ion-row>
 <ion-row>
   <ion-col>
     Infect

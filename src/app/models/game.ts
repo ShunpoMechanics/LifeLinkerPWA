@@ -3,6 +3,8 @@ export interface Game {
     player2Name: string;
     player3Name: string;
     player4Name: string;
+    player5Name: string;
+    player6Name: string;
 
     player1Partners: boolean;
     player1Commander1: string;
@@ -19,4 +21,12 @@ export interface Game {
     player4Partners: boolean;
     player4Commander1: string;
     player4Commander2?: string;
+
+    player5Partners: boolean;
+    player5Commander1: string;
+    player5Commander2?: string;
+
+    player6Partners: boolean;
+    player6Commander1: string;
+    player6Commander2?: string;
 }

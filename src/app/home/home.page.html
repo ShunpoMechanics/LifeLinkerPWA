@@ -1,63 +1,75 @@
 <ion-content [fullscreen]="true">
-  <div (click)="promptRestart()">
+  <div style="display: inline-block; margin-right: 16px" (click)="promptRestart()">
     New Game
+  </div>
+  <div style="display: inline-block;" (click)="addPlayer()">
+    Add Player
   </div>
   <ion-grid>
     <ion-row style="height: 12px">
-      <ion-col>
-        {{game.game.player1Name}}
-      </ion-col>
-      <ion-col>
-        {{game.game.player2Name}}
-      </ion-col> 
+      <ion-col> {{gameService.game.player1Name}} </ion-col>
+      <ion-col> {{gameService.game.player2Name}} </ion-col>
+      <ion-col *ngIf="playerCount > 4"> {{gameService.game.player5Name}} </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col (click)="lowerLife('p1Life')">
-        -
+      <!-- Player 1 -->
+      <ion-col>
+        <ion-col (click)="lowerLife('p1Life')"> - </ion-col>
+        <ion-col routerLink="/profile" (click)="this.setPlayer(p1, p1Name)">
+          {{p1.life}}
+        </ion-col>
+        <ion-col (click)="raiseLife('p1Life')"> + </ion-col>
       </ion-col>
-      <ion-col routerLink="/profile" (click)="this.setPlayer(p1, p1Name)">
-        {{p1.life}}
+      <!-- Player 2 -->
+      <ion-col>
+        <ion-col (click)="lowerLife('p2Life')"> - </ion-col>
+        <ion-col routerLink="/profile" (click)="this.setPlayer(p2, p2Name)">
+          {{p2.life}}
+        </ion-col>
+        <ion-col (click)="raiseLife('p2Life')"> + </ion-col>
       </ion-col>
-      <ion-col (click)="raiseLife('p1Life')">
-        +
-      </ion-col>
-      <ion-col (click)="lowerLife('p2Life')">
-        -
-      </ion-col>
-      <ion-col routerLink="/profile" (click)="this.setPlayer(p2, p2Name)">
-        {{p2.life}}
-      </ion-col>
-      <ion-col (click)="raiseLife('p2Life')">
-        +
+      <!-- Player 5 -->
+      <ion-col *ngIf="playerCount > 4">
+        <ion-col (click)="lowerLife('p5Life')"> - </ion-col>
+        <ion-col routerLink="/profile" (click)="this.setPlayer(p5, p5Name)">
+          {{p5.life}}
+        </ion-col>
+        <ion-col (click)="raiseLife('p5Life')"> + </ion-col>
       </ion-col>
     </ion-row>
+
     <ion-row>
-      <ion-col (click)="lowerLife('p3Life')">
-        -
+      <!-- Player 3 -->
+      <ion-col>
+        <ion-col (click)="lowerLife('p3Life')"> - </ion-col>
+        <ion-col routerLink="/profile" (click)="this.setPlayer(p3, p3Name)">
+          {{p3.life}}
+        </ion-col>
+        <ion-col (click)="raiseLife('p3Life')"> + </ion-col>
       </ion-col>
-      <ion-col routerLink="/profile" (click)="this.setPlayer(p3, p3Name)">
-        {{p3.life}}
+
+        <!-- Player 4 -->
+      <ion-col>
+        <ion-col (click)="lowerLife('p4Life')"> - </ion-col>
+        <ion-col routerLink="/profile" (click)="this.setPlayer(p4, p4Name)">
+          {{p4.life}}
+        </ion-col>
+        <ion-col (click)="raiseLife('p4Life')"> + </ion-col>
       </ion-col>
-      <ion-col (click)="raiseLife('p3Life')">
-        +
-      </ion-col>
-      <ion-col (click)="lowerLife('p4Life')">
-        -
-      </ion-col>
-      <ion-col routerLink="/profile" (click)="this.setPlayer(p4, p4Name)">
-        {{p4.life}}
-      </ion-col>
-      <ion-col (click)="raiseLife('p4Life')">
-        +
+
+      <!-- Player 6 -->
+      <ion-col *ngIf="playerCount > 5">
+        <ion-col (click)="lowerLife('p6Life')"> - </ion-col>
+        <ion-col routerLink="/profile" (click)="this.setPlayer(p6, p6Name)">
+          {{p6.life}}
+        </ion-col>
+        <ion-col (click)="raiseLife('p6Life')"> + </ion-col>
       </ion-col>
     </ion-row>
     <ion-row style="height: 12px">
-      <ion-col>
-        {{game.game.player3Name}}
-      </ion-col>
-      <ion-col>
-        {{game.game.player4Name}}
-      </ion-col> 
+      <ion-col> {{gameService.game.player3Name}} </ion-col>
+      <ion-col> {{gameService.game.player4Name}} </ion-col>
+      <ion-col *ngIf="playerCount > 5"> {{gameService.game.player6Name}} </ion-col>
     </ion-row>
   </ion-grid>
   <div>

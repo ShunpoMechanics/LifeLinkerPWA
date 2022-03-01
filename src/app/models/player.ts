@@ -9,6 +9,10 @@ export interface Player {
     commanderDamageFromPlayer3Second: number;
     commanderDamageFromPlayer4First: number;
     commanderDamageFromPlayer4Second: number;
+    commanderDamageFromPlayer5First: number,
+    commanderDamageFromPlayer5Second: number,
+    commanderDamageFromPlayer6First: number,
+    commanderDamageFromPlayer6Second: number,
     infect: number;
     partners: boolean;
 }

@@ -10,23 +10,23 @@ import { PlayerProfileService } from '../services/playerProfile/player-service.s
 })
 export class ProfilePage implements OnInit {
 
-  constructor(public playerProfileService: PlayerProfileService, public game: GameService) { }
+  constructor(public playerProfileService: PlayerProfileService, public gameService: GameService) { }
 
   playerName: string;
   player: Player;
 
   ngOnInit() {
     this.player = this.playerProfileService.player;
-    this.playerName = this.game.getName(this.player.position);
+    this.playerName = this.gameService.getName(this.player.position);
   }
 
   setName(name: string) {
-    this.game.setName(this.player.position, name);
+    this.gameService.setName(this.player.position, name);
   }
 
   togglePartners() {
     this.player.partners = !this.player.partners;
-    this.game.setPartners(this.player.position);
+    this.gameService.setPartners(this.player.position);
   }
 
   infectUp() {
