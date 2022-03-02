@@ -1,6 +1,5 @@
 import { ApplicationRef, Component, OnInit } from '@angular/core';
 import { SwUpdate, UpdateActivatedEvent, UpdateAvailableEvent } from '@angular/service-worker';
-import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { ToastController, AlertController } from '@ionic/angular';
 import { concat, interval, Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
@@ -134,10 +133,9 @@ export class HomePage implements OnInit {
 
   subscriptions: Subscription[] = [];
 
-  constructor(private screenOrientation: ScreenOrientation, private toastController: ToastController,
+  constructor(private toastController: ToastController,
               private updater: SwUpdate, private alertController: AlertController, private appRef: ApplicationRef,
               public player: PlayerProfileService, public gameService: GameService) {
-    // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
   }
   ngOnInit(): void {
     this.initUpdater();
