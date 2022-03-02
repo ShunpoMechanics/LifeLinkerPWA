@@ -2,7 +2,7 @@
   <div style="display: inline-block; margin-right: 16px" (click)="promptRestart()">
     New Game
   </div>
-  <div style="display: inline-block;" (click)="addPlayer()">
+  <div style="display: inline-block;" *ngIf="playerCount < 6" (click)="addPlayer()">
     Add Player
   </div>
   <ion-grid>
