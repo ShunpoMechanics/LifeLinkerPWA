@@ -32,7 +32,8 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6First: 0,
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
-    partners: false
+    partners: false,
+    color: 'black'
   };
   p2Name: string;
   p2: Player = {
@@ -51,7 +52,8 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6First: 0,
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
-    partners: false
+    partners: false,
+    color: 'black'
   };
   p3Name: string;
   p3: Player = {
@@ -70,7 +72,8 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6First: 0,
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
-    partners: false
+    partners: false,
+    color: 'black'
   };
   p4Name: string;
   p4: Player = {
@@ -89,7 +92,8 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6First: 0,
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
-    partners: false
+    partners: false,
+    color: 'black'
   };
   p5Name: string;
   p5: Player = {
@@ -108,7 +112,8 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6First: 0,
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
-    partners: false
+    partners: false,
+    color: 'black'
   };
   p6Name: string;
   p6: Player = {
@@ -127,7 +132,8 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6First: 0,
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
-    partners: false
+    partners: false,
+    color: 'black'
   };
 
   subscriptions: Subscription[] = [];
