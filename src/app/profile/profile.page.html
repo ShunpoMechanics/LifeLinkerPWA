@@ -250,7 +250,7 @@
 <ion-toggle (ionChange)="togglePartners()" checked="{{player.partners}}" style="padding-top: 8px;">
 </ion-toggle>
 <div style="padding-top: 8px;padding-left: 5px;">Color</div>
-<input [(colorPicker)]="player.color" [style.background]="player.color"/>
+<div class="colorPicker" id="colorPicker" routerLink="/color-picker"></div>
 </ion-row>
 
 </ion-content>

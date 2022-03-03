@@ -144,6 +144,54 @@ export class HomePage implements OnInit {
   }
   ngOnInit(): void {
     this.initUpdater();
+    this.setColors();
+  }
+
+  ionViewWillEnter() {
+    this.setColors();
+  }
+
+  setColors() {
+    document.getElementById("player1").style.backgroundColor = this.p1.color;
+    if(this.p1.color == 'white')
+      document.getElementById("player1").style.color = 'black';
+    else
+      document.getElementById("player1").style.color = 'white';
+
+    document.getElementById("player2").style.backgroundColor = this.p2.color;
+    if(this.p2.color == 'white')
+      document.getElementById("player2").style.color = 'black';
+    else
+      document.getElementById("player2").style.color = 'white';
+
+    document.getElementById("player3").style.backgroundColor = this.p3.color;
+    if(this.p3.color == 'white')
+      document.getElementById("player3").style.color = 'black';
+    else
+      document.getElementById("player3").style.color = 'white';
+
+    document.getElementById("player4").style.backgroundColor = this.p4.color;
+    if(this.p4.color == 'white')
+      document.getElementById("player4").style.color = 'black';
+    else
+      document.getElementById("player4").style.color = 'white';
+
+    if(this.playerCount > 4)
+    {
+      document.getElementById("player5").style.backgroundColor = this.p5.color;
+      if(this.p5.color == 'white')
+        document.getElementById("player5").style.color = 'black';
+      else
+        document.getElementById("player5").style.color = 'white';
+    }
+    if(this.playerCount > 5)
+      { 
+        document.getElementById("player6").style.backgroundColor = this.p6.color;
+        if(this.p6.color == 'white')
+          document.getElementById("player6").style.color = 'black';
+        else
+          document.getElementById("player6").style.color = 'white';
+      }
   }
 
   initUpdater() {
