@@ -7,7 +7,6 @@ import { Player } from '../models/player';
 import { GameService } from '../services/game/game.service';
 import { PlayerProfileService } from '../services/playerProfile/player-service.service';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
