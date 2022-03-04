@@ -33,7 +33,7 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
     partners: false,
-    color: 'black'
+    color: 'white'
   };
   p2Name: string;
   p2: Player = {
@@ -93,7 +93,7 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
     partners: false,
-    color: 'black'
+    color: 'white'
   };
   p5Name: string;
   p5: Player = {
@@ -113,7 +113,7 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
     partners: false,
-    color: 'black'
+    color: 'white'
   };
   p6Name: string;
   p6: Player = {
