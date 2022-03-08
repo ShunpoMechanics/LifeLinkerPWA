@@ -14,7 +14,7 @@ import { PlayerProfileService } from '../services/playerProfile/player-service.s
 })
 export class HomePage implements OnInit {
 
-  playerCount = 4;
+  playerCount = 2;
   p1Name: string;
   p1: Player = {
     position: 1,
@@ -32,7 +32,8 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6First: 0,
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
-    partners: false
+    partners: false,
+    color: 'white'
   };
   p2Name: string;
   p2: Player = {
@@ -51,7 +52,8 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6First: 0,
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
-    partners: false
+    partners: false,
+    color: 'black'
   };
   p3Name: string;
   p3: Player = {
@@ -70,7 +72,8 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6First: 0,
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
-    partners: false
+    partners: false,
+    color: 'black'
   };
   p4Name: string;
   p4: Player = {
@@ -89,7 +92,8 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6First: 0,
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
-    partners: false
+    partners: false,
+    color: 'white'
   };
   p5Name: string;
   p5: Player = {
@@ -108,7 +112,8 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6First: 0,
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
-    partners: false
+    partners: false,
+    color: 'white'
   };
   p6Name: string;
   p6: Player = {
@@ -127,7 +132,8 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6First: 0,
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
-    partners: false
+    partners: false,
+    color: 'black'
   };
 
   subscriptions: Subscription[] = [];
@@ -138,6 +144,58 @@ export class HomePage implements OnInit {
   }
   ngOnInit(): void {
     this.initUpdater();
+  }
+
+  ionViewWillEnter() {
+  }
+
+  fontColor(color: string) {
+    if(color == 'white' || color == 'greenyellow' || color == 'lightblue' || color == 'orange' || color == 'yellow' || color == 'aquamarine' || color == 'aqua' || color == 'cyan')
+      return 'black';
+    return 'white';
+  }
+
+  setColors() {
+    document.getElementById("player1").style.backgroundColor = this.p1.color;
+    if(this.p1.color == 'white')
+      document.getElementById("player1").style.color = 'black';
+    else
+      document.getElementById("player1").style.color = 'white';
+
+    document.getElementById("player2").style.backgroundColor = this.p2.color;
+    if(this.p2.color == 'white')
+      document.getElementById("player2").style.color = 'black';
+    else
+      document.getElementById("player2").style.color = 'white';
+
+    document.getElementById("player3").style.backgroundColor = this.p3.color;
+    if(this.p3.color == 'white')
+      document.getElementById("player3").style.color = 'black';
+    else
+      document.getElementById("player3").style.color = 'white';
+
+    document.getElementById("player4").style.backgroundColor = this.p4.color;
+    if(this.p4.color == 'white')
+      document.getElementById("player4").style.color = 'black';
+    else
+      document.getElementById("player4").style.color = 'white';
+
+    if(this.playerCount > 4)
+    {
+      document.getElementById("player5").style.backgroundColor = this.p5.color;
+      if(this.p5.color == 'white')
+        document.getElementById("player5").style.color = 'black';
+      else
+        document.getElementById("player5").style.color = 'white';
+    }
+    if(this.playerCount > 5)
+      { 
+        document.getElementById("player6").style.backgroundColor = this.p6.color;
+        if(this.p6.color == 'white')
+          document.getElementById("player6").style.color = 'black';
+        else
+          document.getElementById("player6").style.color = 'white';
+      }
   }
 
   initUpdater() {
@@ -253,8 +311,19 @@ export class HomePage implements OnInit {
   }
 
   addPlayer() {
-    if(this.playerCount < 8)
-      this.playerCount++;
+    if(this.playerCount < 6)
+      {
+        this.playerCount++;
+        this.gameService.game.playerCount++;
+      }
+  }
+
+  removePlayer() {
+    if(this.playerCount > 2)
+      {
+        this.playerCount--;
+        this.gameService.game.playerCount--;
+      }
   }
 
   resetLife() {

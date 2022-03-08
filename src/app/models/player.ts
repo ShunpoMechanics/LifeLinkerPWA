@@ -15,4 +15,5 @@ export interface Player {
     commanderDamageFromPlayer6Second: number,
     infect: number;
     partners: boolean;
+    color: string;
 }

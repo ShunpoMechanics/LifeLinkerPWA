@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'help',
     loadChildren: () => import('./help/help.module').then( m => m.HelpPageModule)
   },
+  {
+    path: 'color-picker',
+    loadChildren: () => import('./color-picker/color-picker.module').then( m => m.ColorPickerPageModule)
+  }
 ];
 
 @NgModule({

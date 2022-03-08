@@ -3,11 +3,11 @@
     <ion-row>
     <ion-back-button></ion-back-button>
     <ion-input class="toolbar-input" *ngIf="player.position == 1" [(ngModel)]="gameService.game.player1Name"></ion-input> <!--When text is entered, run setName-->
-    <ion-input *ngIf="player.position == 2" [(ngModel)]="gameService.game.player2Name"></ion-input> 
-    <ion-input *ngIf="player.position == 3" [(ngModel)]="gameService.game.player3Name"></ion-input> 
-    <ion-input *ngIf="player.position == 4" [(ngModel)]="gameService.game.player4Name"></ion-input> 
-    <ion-input *ngIf="player.position == 5" [(ngModel)]="gameService.game.player5Name"></ion-input> 
-    <ion-input *ngIf="player.position == 6" [(ngModel)]="gameService.game.player6Name"></ion-input> 
+    <ion-input class="toolbar-input" *ngIf="player.position == 2" [(ngModel)]="gameService.game.player2Name"></ion-input> 
+    <ion-input class="toolbar-input" *ngIf="player.position == 3" [(ngModel)]="gameService.game.player3Name"></ion-input> 
+    <ion-input class="toolbar-input" *ngIf="player.position == 4" [(ngModel)]="gameService.game.player4Name"></ion-input> 
+    <ion-input class="toolbar-input" *ngIf="player.position == 5" [(ngModel)]="gameService.game.player5Name"></ion-input> 
+    <ion-input class="toolbar-input" *ngIf="player.position == 6" [(ngModel)]="gameService.game.player6Name"></ion-input> 
   </ion-row>
   </ion-toolbar>
 </ion-header>
@@ -177,7 +177,7 @@
   </ion-col>
 </ion-row>
 
-<ion-row *ngIf="player.position != 5">
+<ion-row *ngIf="player.position != 5 && gameService.game.playerCount > 4">
   <ion-col>
     {{gameService.game.player5Commander1}} :
   </ion-col>
@@ -204,7 +204,7 @@
   </ion-col>
 </ion-row>
 
-<ion-row *ngIf="player.position != 6">
+<ion-row *ngIf="player.position != 6 && gameService.game.playerCount > 5">
   <ion-col>
     {{gameService.game.player6Commander1}} :
   </ion-col>
@@ -246,9 +246,11 @@
 </ion-row>
 
 <ion-row>
-  <div style="padding-top: 8px;padding-left: 5px;">Partners?</div>
+  <div class="profile-text">Partners?</div>
 <ion-toggle (ionChange)="togglePartners()" checked="{{player.partners}}" style="padding-top: 8px;">
 </ion-toggle>
+<div class="profile-text">Color</div>
+<div class="colorPicker" id="colorPicker" [ngStyle]="{'background' : player.color}" routerLink="/color-picker"></div>
 </ion-row>
 
 </ion-content>

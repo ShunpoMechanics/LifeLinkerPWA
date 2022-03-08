@@ -36,7 +36,9 @@ export class GameService {
     player3Commander2: 'Player 3 Commander 2',
     player4Commander2: 'Player 4 Commander 2',
     player5Commander2: 'Player 5 Commander 2',
-    player6Commander2: 'Player 6 Commander 2'
+    player6Commander2: 'Player 6 Commander 2',
+
+    playerCount: 4
   };
 
   getName(id: number) {

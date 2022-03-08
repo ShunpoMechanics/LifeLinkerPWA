@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row>
+    <ion-back-button></ion-back-button>
+  </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+  <ion-row>
+    <ion-col *ngFor="let color of colors">
+      <div class="colorBox" [ngStyle]="{'background':color }" (click)="player.color=color">
+        <span class="checkmark" *ngIf="player.color==color">
+          <div class="checkmark_circle"></div>
+          <div class="checkmark_stem"></div>
+          <div class="checkmark_kick"></div>
+        </span>
+    </div>
+    </ion-col>
+  </ion-row>
+  </ion-grid>
+</ion-content>

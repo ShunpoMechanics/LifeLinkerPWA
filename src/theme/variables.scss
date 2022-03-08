@@ -72,6 +72,12 @@
  * iOS Dark Theme
  * -------------------------------------------
  */
+ ion-toggle {
+  padding-top: 5px;
+  height: 22px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
 
 .ios body {
   --ion-background-color: #000000;

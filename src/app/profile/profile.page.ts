@@ -18,11 +18,15 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     this.player = this.playerProfileService.player;
     this.playerName = this.gameService.getName(this.player.position);
+    // document.getElementById("colorPicker").style.backgroundColor = this.player.color;
   }
 
-  setName(name: string) {
-    this.gameService.setName(this.player.position, name);
+  ionViewWillEnter() {
+    // document.getElementById("colorPicker").style.backgroundColor = this.player.color;
   }
+  // setName(name: string) {
+  //   this.gameService.setName(this.player.position, name);
+  // }
 
   togglePartners() {
     this.player.partners = !this.player.partners;
