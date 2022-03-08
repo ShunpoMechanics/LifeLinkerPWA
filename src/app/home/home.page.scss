@@ -5,14 +5,17 @@ ion-content {
 
 ion-row {
   height: 45%;
-  // margin-bottom: 5px;
+  margin-bottom: 5px;
   display: flex;
   align-items: center;
 }
 
 .playerbox {
   border: 1px solid white; 
+  border-radius: 5px;
   height: 100%;
+  margin-right: 4px;
+  width: 95%;
   display: flex!important;
   align-content: center!important;
   align-items: center!important;
