@@ -5,7 +5,7 @@
   <div style="display: inline-block;" *ngIf="playerCount < 6" (click)="addPlayer()">
     Add Player
   </div>
-  <ion-grid>
+  <ion-grid style="width: 90%">
     <ion-row *ngIf="gameService.game.player1Name || gameService.game.player2Name || gameService.game.player5Name" style="height: 70px">
       <ion-col> {{gameService.game.player1Name}} </ion-col>
       <ion-col> {{gameService.game.player2Name}} </ion-col>
