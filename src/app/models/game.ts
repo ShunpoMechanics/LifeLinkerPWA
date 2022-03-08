@@ -29,4 +29,6 @@ export interface Game {
     player6Partners: boolean;
     player6Commander1: string;
     player6Commander2?: string;
+
+    playerCount: number;
 }

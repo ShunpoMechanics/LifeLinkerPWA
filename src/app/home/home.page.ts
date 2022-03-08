@@ -144,11 +144,15 @@ export class HomePage implements OnInit {
   }
   ngOnInit(): void {
     this.initUpdater();
-    this.setColors();
   }
 
   ionViewWillEnter() {
-    this.setColors();
+  }
+
+  fontColor(color: string) {
+    if(color == 'white' || color == 'greenyellow' || color == 'lightblue' || color == 'orange' || color == 'yellow' || color == 'aquamarine' || color == 'aqua' || color == 'cyan')
+      return 'black';
+    return 'white';
   }
 
   setColors() {
@@ -308,7 +312,10 @@ export class HomePage implements OnInit {
 
   addPlayer() {
     if(this.playerCount < 8)
-      this.playerCount++;
+      {
+        this.playerCount++;
+        this.gameService.game.playerCount++;
+      }
   }
 
   resetLife() {

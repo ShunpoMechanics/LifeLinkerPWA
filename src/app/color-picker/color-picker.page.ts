@@ -14,9 +14,12 @@ export class ColorPickerPage implements OnInit {
 
   public player: Player;
 
+  colors = [
+    'red', 'white', 'black', 'blue', 'green', 'yellow', 'purple', 'orange', 'lightblue', 'greenyellow', 'pink', 'orangered', 'brown', 'cyan', 'indigo', 'blueviolet', 'aqua', 'aquamarine', 'goldenrod', 'grey', 'crimson'
+  ]
+
   ngOnInit() {
     this.player = this.playerProfileService.player;
-    console.log(this.player.color);
   }
 
   public setColor(color: string) {
