@@ -1,11 +1,14 @@
 <ion-content [fullscreen]="true">
+  <div style="display: inline-block; margin-right: 16px" *ngIf="playerCount > 2" (click)="removePlayer()">
+    Remove Player
+  </div>
   <div style="display: inline-block; margin-right: 16px" (click)="promptRestart()">
     New Game
   </div>
   <div style="display: inline-block;" *ngIf="playerCount < 6" (click)="addPlayer()">
     Add Player
   </div>
-  <ion-grid style="width: 90%">
+  <ion-grid style="width: 85%">
     <ion-row *ngIf="gameService.game.player1Name || gameService.game.player2Name || gameService.game.player5Name" style="height: 70px">
       <ion-col> {{gameService.game.player1Name}} </ion-col>
       <ion-col> {{gameService.game.player2Name}} </ion-col>
@@ -21,7 +24,7 @@
         <ion-col (click)="raiseLife('p1Life')"> + </ion-col>
       </ion-col>
       <!-- Player 2 -->
-      <ion-col id="player2" class="playerbox" [ngStyle]="{'background' : p2.color, 'color' : fontColor(p2.color)}">
+      <ion-col id="player2" class="playerbox" [ngStyle]="{'background' : p2.color, 'color' : fontColor(p2.color)}" *ngIf="playerCount > 2">
         <ion-col (click)="lowerLife('p2Life')"> - </ion-col>
         <ion-col routerLink="/profile" (click)="this.setPlayer(p2, p2Name)">
           {{p2.life}}
@@ -49,7 +52,7 @@
       </ion-col>
 
         <!-- Player 4 -->
-        <ion-col id="player4" class="playerbox" [ngStyle]="{'background' : p4.color, 'color' : fontColor(p4.color)}">
+        <ion-col id="player4" class="playerbox" [ngStyle]="{'background' : p4.color, 'color' : fontColor(p4.color)}" *ngIf="playerCount > 3">
         <ion-col (click)="lowerLife('p4Life')"> - </ion-col>
         <ion-col routerLink="/profile" (click)="this.setPlayer(p4, p4Name)">
           {{p4.life}}

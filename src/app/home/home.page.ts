@@ -14,7 +14,7 @@ import { PlayerProfileService } from '../services/playerProfile/player-service.s
 })
 export class HomePage implements OnInit {
 
-  playerCount = 4;
+  playerCount = 2;
   p1Name: string;
   p1: Player = {
     position: 1,
@@ -311,10 +311,18 @@ export class HomePage implements OnInit {
   }
 
   addPlayer() {
-    if(this.playerCount < 8)
+    if(this.playerCount < 6)
       {
         this.playerCount++;
         this.gameService.game.playerCount++;
+      }
+  }
+
+  removePlayer() {
+    if(this.playerCount > 2)
+      {
+        this.playerCount--;
+        this.gameService.game.playerCount--;
       }
   }
 
