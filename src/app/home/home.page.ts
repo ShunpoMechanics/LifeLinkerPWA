@@ -1,19 +1,25 @@
-import { ApplicationRef, Component, OnInit } from '@angular/core';
-import { SwUpdate, UpdateActivatedEvent, UpdateAvailableEvent } from '@angular/service-worker';
-import { ToastController, AlertController } from '@ionic/angular';
-import { concat, interval, Subscription } from 'rxjs';
-import { first } from 'rxjs/operators';
-import { Player } from '../models/player';
-import { GameService } from '../services/game/game.service';
-import { PlayerProfileService } from '../services/playerProfile/player-service.service';
+import { ApplicationRef, Component, OnInit } from "@angular/core";
+import {
+  SwUpdate,
+  UpdateActivatedEvent,
+  UpdateAvailableEvent,
+} from "@angular/service-worker";
+import { ToastController, AlertController } from "@ionic/angular";
+import { concat, interval, Subscription } from "rxjs";
+import { first } from "rxjs/operators";
+import { Player } from "../models/player";
+import { GameService } from "../services/game/game.service";
+import { PlayerProfileService } from "../services/playerProfile/player-service.service";
+
+import { HammerGestureConfig } from "@angular/platform-browser";
+import * as Hammer from "hammerjs";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: "app-home",
+  templateUrl: "home.page.html",
+  styleUrls: ["home.page.scss"],
 })
 export class HomePage implements OnInit {
-
   playerCount = 2;
   p1Name: string;
   p1: Player = {
@@ -33,7 +39,7 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
     partners: false,
-    color: 'white'
+    color: "white",
   };
   p2Name: string;
   p2: Player = {
@@ -53,7 +59,7 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
     partners: false,
-    color: 'black'
+    color: "black",
   };
   p3Name: string;
   p3: Player = {
@@ -73,7 +79,7 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
     partners: false,
-    color: 'black'
+    color: "black",
   };
   p4Name: string;
   p4: Player = {
@@ -93,7 +99,7 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
     partners: false,
-    color: 'white'
+    color: "white",
   };
   p5Name: string;
   p5: Player = {
@@ -113,7 +119,7 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
     partners: false,
-    color: 'white'
+    color: "white",
   };
   p6Name: string;
   p6: Player = {
@@ -133,79 +139,154 @@ export class HomePage implements OnInit {
     commanderDamageFromPlayer6Second: 0,
     infect: 0,
     partners: false,
-    color: 'black'
+    color: "black",
   };
 
   subscriptions: Subscription[] = [];
 
-  constructor(private toastController: ToastController,
-              private updater: SwUpdate, private alertController: AlertController, private appRef: ApplicationRef,
-              public player: PlayerProfileService, public gameService: GameService) {
-  }
+  constructor(
+    private toastController: ToastController,
+    private updater: SwUpdate,
+    private alertController: AlertController,
+    private appRef: ApplicationRef,
+    public player: PlayerProfileService,
+    public gameService: GameService
+  ) {}
   ngOnInit(): void {
     this.initUpdater();
+    this.initListeners();
   }
 
-  ionViewWillEnter() {
+  initListeners() {
+    // Lower life
+    var manager1 = new Hammer(document.getElementById("p1LifeDown"));
+    manager1.on(
+      "press",
+      function () {
+        this.p1.life = this.p1.life - 10;
+      }.bind(this)
+    );
+
+    manager1.on(
+      "tap",
+      function () {
+        this.p1.life--;
+      }.bind(this)
+    );
+
+    var manager3 = new Hammer(document.getElementById("p3LifeDown"));
+    manager3.on(
+      "press",
+      function () {
+        this.p3.life = this.p3.life - 10;
+      }.bind(this)
+    );
+
+    manager3.on(
+      "tap",
+      function () {
+        this.p3.life--;
+      }.bind(this)
+    );
+
+    // Raise Life
+    var manager7 = new Hammer(document.getElementById("p1LifeUp"));
+    manager7.on(
+      "press",
+      function () {
+        this.p1.life = this.p1.life + 10;
+      }.bind(this)
+    );
+
+    manager7.on(
+      "tap",
+      function () {
+        this.p1.life++;
+      }.bind(this)
+    );
+
+    var manager9 = new Hammer(document.getElementById("p3LifeUp"));
+    manager9.on(
+      "press",
+      function () {
+        this.p3.life = this.p3.life + 10;
+      }.bind(this)
+    );
+
+    manager9.on(
+      "tap",
+      function () {
+        this.p3.life++;
+      }.bind(this)
+    );
   }
 
   fontColor(color: string) {
-    if(color == 'white' || color == 'greenyellow' || color == 'lightblue' || color == 'orange' || color == 'yellow' || color == 'aquamarine' || color == 'aqua' || color == 'cyan')
-      return 'black';
-    return 'white';
+    if (
+      color == "white" ||
+      color == "greenyellow" ||
+      color == "lightblue" ||
+      color == "orange" ||
+      color == "yellow" ||
+      color == "aquamarine" ||
+      color == "aqua" ||
+      color == "cyan"
+    )
+      return "black";
+    return "white";
   }
 
   setColors() {
     document.getElementById("player1").style.backgroundColor = this.p1.color;
-    if(this.p1.color == 'white')
-      document.getElementById("player1").style.color = 'black';
-    else
-      document.getElementById("player1").style.color = 'white';
+    if (this.p1.color == "white")
+      document.getElementById("player1").style.color = "black";
+    else document.getElementById("player1").style.color = "white";
 
     document.getElementById("player2").style.backgroundColor = this.p2.color;
-    if(this.p2.color == 'white')
-      document.getElementById("player2").style.color = 'black';
-    else
-      document.getElementById("player2").style.color = 'white';
+    if (this.p2.color == "white")
+      document.getElementById("player2").style.color = "black";
+    else document.getElementById("player2").style.color = "white";
 
     document.getElementById("player3").style.backgroundColor = this.p3.color;
-    if(this.p3.color == 'white')
-      document.getElementById("player3").style.color = 'black';
-    else
-      document.getElementById("player3").style.color = 'white';
+    if (this.p3.color == "white")
+      document.getElementById("player3").style.color = "black";
+    else document.getElementById("player3").style.color = "white";
 
     document.getElementById("player4").style.backgroundColor = this.p4.color;
-    if(this.p4.color == 'white')
-      document.getElementById("player4").style.color = 'black';
-    else
-      document.getElementById("player4").style.color = 'white';
+    if (this.p4.color == "white")
+      document.getElementById("player4").style.color = "black";
+    else document.getElementById("player4").style.color = "white";
 
-    if(this.playerCount > 4)
-    {
+    if (this.playerCount > 4) {
       document.getElementById("player5").style.backgroundColor = this.p5.color;
-      if(this.p5.color == 'white')
-        document.getElementById("player5").style.color = 'black';
-      else
-        document.getElementById("player5").style.color = 'white';
+      if (this.p5.color == "white")
+        document.getElementById("player5").style.color = "black";
+      else document.getElementById("player5").style.color = "white";
     }
-    if(this.playerCount > 5)
-      { 
-        document.getElementById("player6").style.backgroundColor = this.p6.color;
-        if(this.p6.color == 'white')
-          document.getElementById("player6").style.color = 'black';
-        else
-          document.getElementById("player6").style.color = 'white';
-      }
+    if (this.playerCount > 5) {
+      document.getElementById("player6").style.backgroundColor = this.p6.color;
+      if (this.p6.color == "white")
+        document.getElementById("player6").style.color = "black";
+      else document.getElementById("player6").style.color = "white";
+    }
   }
 
   initUpdater() {
     const updateInterval$ = interval(1000 * 600 * 24);
-    const appIsStable$ = this.appRef.isStable.pipe(first(isStable => isStable === true));
+    const appIsStable$ = this.appRef.isStable.pipe(
+      first((isStable) => isStable === true)
+    );
     const appStableInterval$ = concat(appIsStable$, updateInterval$);
 
-    this.subscriptions.push(this.updater.available.subscribe((e) => this.onUpdateAvailable(e)));
-    this.subscriptions.push(this.updater.activated.subscribe((e) => this.onUpdateActivated(e)));
-    this.subscriptions.push(appStableInterval$.subscribe(() => this.checkForUpdate()));
+    this.subscriptions.push(
+      this.updater.available.subscribe((e) => this.onUpdateAvailable(e))
+    );
+    this.subscriptions.push(
+      this.updater.activated.subscribe((e) => this.onUpdateActivated(e))
+    );
+    this.subscriptions.push(
+      appStableInterval$.subscribe(() => this.checkForUpdate())
+    );
   }
 
   async checkForUpdate() {
@@ -216,38 +297,40 @@ export class HomePage implements OnInit {
 
   async onUpdateAvailable(e: UpdateAvailableEvent) {
     // tslint:disable-next-line: no-string-literal
-    const updateMessage = e.available.appData['updateMessage'];
+    const updateMessage = e.available.appData["updateMessage"];
     const alert = await this.alertController.create({
-      header: 'Update available!',
-      message: 'A new version of the application is available. Press OK to update now.',
+      header: "Update available!",
+      message:
+        "A new version of the application is available. Press OK to update now.",
       buttons: [
         {
-          text: 'Not Now',
-          role: 'cancel',
-          cssClass: 'secondary',
+          text: "Not Now",
+          role: "cancel",
+          cssClass: "secondary",
           handler: async () => {
-            await this.showToastMessage('Update deferred');
-          }
-        }, {
-          text: 'OK',
+            await this.showToastMessage("Update deferred");
+          },
+        },
+        {
+          text: "OK",
           handler: async () => {
             await this.updater.activateUpdate();
             window.location.reload();
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
     await alert.present();
   }
   async onUpdateActivated(e: UpdateActivatedEvent) {
-    await this.showToastMessage('Application updating');
+    await this.showToastMessage("Application updating");
   }
 
   async showToastMessage(msg: string) {
     const toast = await this.toastController.create({
       message: msg,
       duration: 2000,
-      position: 'top'
+      position: "top",
     });
     toast.present();
   }
@@ -257,73 +340,224 @@ export class HomePage implements OnInit {
   }
 
   lowerLife(id: string) {
-    switch (id)
-    {
-      case 'p1Life':
+    switch (id) {
+      case "p1Life":
         this.p1.life--;
         break;
-      case 'p2Life':
+      case "p2Life":
         this.p2.life--;
         break;
-      case 'p3Life':
+      case "p3Life":
         this.p3.life--;
         break;
-      case 'p4Life':
+      case "p4Life":
         this.p4.life--;
         break;
-      case 'p5Life':
+      case "p5Life":
         this.p5.life--;
         break;
-      case 'p6Life':
+      case "p6Life":
         this.p6.life--;
         break;
     }
   }
 
+  lowerLife10(id: string) {
+    switch (id) {
+      case "p1Life":
+        this.p1.life = this.p1.life - 10;
+        break;
+      case "p2Life":
+        this.p2.life = this.p2.life - 10;
+        break;
+      case "p3Life":
+        this.p3.life = this.p2.life - 10;
+        break;
+      case "p4Life":
+        this.p4.life = this.p2.life - 10;
+        break;
+      case "p5Life":
+        this.p5.life = this.p2.life - 10;
+        break;
+      case "p6Life":
+        this.p6.life = this.p2.life - 10;
+        break;
+    }
+  }
+
   raiseLife(id: string) {
-    switch (id)
-    {
-      case 'p1Life':
+    switch (id) {
+      case "p1Life":
         this.p1.life++;
         break;
-      case 'p2Life':
+      case "p2Life":
         this.p2.life++;
         break;
-      case 'p3Life':
+      case "p3Life":
         this.p3.life++;
         break;
-      case 'p4Life':
+      case "p4Life":
         this.p4.life++;
         break;
-      case 'p5Life':
+      case "p5Life":
         this.p5.life++;
         break;
-      case 'p6Life':
+      case "p6Life":
         this.p6.life++;
         break;
     }
   }
 
   promptRestart() {
-    if (confirm('Do you want to restart?')){
-    this.resetLife();
+    if (confirm("Do you want to restart?")) {
+      this.resetLife();
     }
   }
 
+  hideOrShow(position: number) {
+    if (position <= this.playerCount) return "flex";
+    return "none";
+  }
+
   addPlayer() {
-    if(this.playerCount < 6)
-      {
-        this.playerCount++;
-        this.gameService.game.playerCount++;
-      }
+    if (this.playerCount < 6) {
+      this.playerCount++;
+      this.gameService.game.playerCount++;
+    }
+
+    if (this.playerCount == 3) {
+      var manager2 = new Hammer(document.getElementById("p2LifeDown"));
+      manager2.on(
+        "press",
+        function () {
+          this.p2.life = this.p2.life - 10;
+        }.bind(this)
+      );
+
+      manager2.on(
+        "tap",
+        function () {
+          this.p2.life--;
+        }.bind(this)
+      );
+
+      var manager8 = new Hammer(document.getElementById("p2LifeUp"));
+      manager8.on(
+        "press",
+        function () {
+          this.p2.life = this.p2.life + 10;
+        }.bind(this)
+      );
+
+      manager8.on(
+        "tap",
+        function () {
+          this.p2.life++;
+        }.bind(this)
+      );
+    }
+
+    if (this.playerCount == 4) {
+      var manager4 = new Hammer(document.getElementById("p4LifeDown"));
+      manager4.on(
+        "press",
+        function () {
+          this.p4.life = this.p4.life - 10;
+        }.bind(this)
+      );
+
+      manager4.on(
+        "tap",
+        function () {
+          this.p4.life--;
+        }.bind(this)
+      );
+
+      var manager10 = new Hammer(document.getElementById("p4LifeUp"));
+      manager10.on(
+        "press",
+        function () {
+          this.p4.life = this.p4.life + 10;
+        }.bind(this)
+      );
+
+      manager10.on(
+        "tap",
+        function () {
+          this.p4.life++;
+        }.bind(this)
+      );
+    }
+
+    if (this.playerCount == 5) {
+      var manager5 = new Hammer(document.getElementById("p5LifeDown"));
+      manager5.on(
+        "press",
+        function () {
+          this.p5.life = this.p5.life - 10;
+        }.bind(this)
+      );
+
+      manager5.on(
+        "tap",
+        function () {
+          this.p5.life--;
+        }.bind(this)
+      );
+
+      var manager11 = new Hammer(document.getElementById("p5LifeUp"));
+      manager11.on(
+        "press",
+        function () {
+          this.p5.life = this.p5.life + 10;
+        }.bind(this)
+      );
+
+      manager11.on(
+        "tap",
+        function () {
+          this.p5.life++;
+        }.bind(this)
+      );
+    }
+    if (this.playerCount == 6) {
+      var manager6 = new Hammer(document.getElementById("p6LifeDown"));
+      manager6.on(
+        "press",
+        function () {
+          this.p6.life = this.p6.life - 10;
+        }.bind(this)
+      );
+
+      manager6.on(
+        "tap",
+        function () {
+          this.p6.life--;
+        }.bind(this)
+      );
+
+      var manager12 = new Hammer(document.getElementById("p6LifeUp"));
+      manager12.on(
+        "press",
+        function () {
+          this.p6.life = this.p6.life + 10;
+        }.bind(this)
+      );
+
+      manager12.on(
+        "tap",
+        function () {
+          this.p6.life++;
+        }.bind(this)
+      );
+    }
   }
 
   removePlayer() {
-    if(this.playerCount > 2)
-      {
-        this.playerCount--;
-        this.gameService.game.playerCount--;
-      }
+    if (this.playerCount > 2) {
+      this.playerCount--;
+      this.gameService.game.playerCount--;
+    }
   }
 
   resetLife() {
