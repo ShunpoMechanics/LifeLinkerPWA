@@ -22,6 +22,7 @@ import * as Hammer from "hammerjs";
 export class HomePage implements OnInit {
   playerCount = 2;
   p1Name: string;
+  highestInit = 2;
   p1: Player = {
     position: 1,
     life: 40,
@@ -425,131 +426,133 @@ export class HomePage implements OnInit {
       this.gameService.game.playerCount++;
     }
 
-    if (this.playerCount == 3) {
-      var manager2 = new Hammer(document.getElementById("p2LifeDown"));
-      manager2.on(
-        "press",
-        function () {
-          this.p2.life = this.p2.life - 10;
-        }.bind(this)
-      );
+    if (this.highestInit < this.playerCount) {
+      if (this.playerCount == 3) {
+        var manager2 = new Hammer(document.getElementById("p2LifeDown"));
+        manager2.on(
+          "press",
+          function () {
+            this.p2.life = this.p2.life - 10;
+          }.bind(this)
+        );
 
-      manager2.on(
-        "tap",
-        function () {
-          this.p2.life--;
-        }.bind(this)
-      );
+        manager2.on(
+          "tap",
+          function () {
+            this.p2.life--;
+          }.bind(this)
+        );
 
-      var manager8 = new Hammer(document.getElementById("p2LifeUp"));
-      manager8.on(
-        "press",
-        function () {
-          this.p2.life = this.p2.life + 10;
-        }.bind(this)
-      );
+        var manager8 = new Hammer(document.getElementById("p2LifeUp"));
+        manager8.on(
+          "press",
+          function () {
+            this.p2.life = this.p2.life + 10;
+          }.bind(this)
+        );
 
-      manager8.on(
-        "tap",
-        function () {
-          this.p2.life++;
-        }.bind(this)
-      );
-    }
+        manager8.on(
+          "tap",
+          function () {
+            this.p2.life++;
+          }.bind(this)
+        );
+      }
 
-    if (this.playerCount == 4) {
-      var manager4 = new Hammer(document.getElementById("p4LifeDown"));
-      manager4.on(
-        "press",
-        function () {
-          this.p4.life = this.p4.life - 10;
-        }.bind(this)
-      );
+      else if (this.playerCount == 4) {
+        var manager4 = new Hammer(document.getElementById("p4LifeDown"));
+        manager4.on(
+          "press",
+          function () {
+            this.p4.life = this.p4.life - 10;
+          }.bind(this)
+        );
 
-      manager4.on(
-        "tap",
-        function () {
-          this.p4.life--;
-        }.bind(this)
-      );
+        manager4.on(
+          "tap",
+          function () {
+            this.p4.life--;
+          }.bind(this)
+        );
 
-      var manager10 = new Hammer(document.getElementById("p4LifeUp"));
-      manager10.on(
-        "press",
-        function () {
-          this.p4.life = this.p4.life + 10;
-        }.bind(this)
-      );
+        var manager10 = new Hammer(document.getElementById("p4LifeUp"));
+        manager10.on(
+          "press",
+          function () {
+            this.p4.life = this.p4.life + 10;
+          }.bind(this)
+        );
 
-      manager10.on(
-        "tap",
-        function () {
-          this.p4.life++;
-        }.bind(this)
-      );
-    }
+        manager10.on(
+          "tap",
+          function () {
+            this.p4.life++;
+          }.bind(this)
+        );
+      }
 
-    if (this.playerCount == 5) {
-      var manager5 = new Hammer(document.getElementById("p5LifeDown"));
-      manager5.on(
-        "press",
-        function () {
-          this.p5.life = this.p5.life - 10;
-        }.bind(this)
-      );
+      else if (this.playerCount == 5) {
+        var manager5 = new Hammer(document.getElementById("p5LifeDown"));
+        manager5.on(
+          "press",
+          function () {
+            this.p5.life = this.p5.life - 10;
+          }.bind(this)
+        );
 
-      manager5.on(
-        "tap",
-        function () {
-          this.p5.life--;
-        }.bind(this)
-      );
+        manager5.on(
+          "tap",
+          function () {
+            this.p5.life--;
+          }.bind(this)
+        );
 
-      var manager11 = new Hammer(document.getElementById("p5LifeUp"));
-      manager11.on(
-        "press",
-        function () {
-          this.p5.life = this.p5.life + 10;
-        }.bind(this)
-      );
+        var manager11 = new Hammer(document.getElementById("p5LifeUp"));
+        manager11.on(
+          "press",
+          function () {
+            this.p5.life = this.p5.life + 10;
+          }.bind(this)
+        );
 
-      manager11.on(
-        "tap",
-        function () {
-          this.p5.life++;
-        }.bind(this)
-      );
-    }
-    if (this.playerCount == 6) {
-      var manager6 = new Hammer(document.getElementById("p6LifeDown"));
-      manager6.on(
-        "press",
-        function () {
-          this.p6.life = this.p6.life - 10;
-        }.bind(this)
-      );
+        manager11.on(
+          "tap",
+          function () {
+            this.p5.life++;
+          }.bind(this)
+        );
+      }
+      else if (this.playerCount == 6) {
+        var manager6 = new Hammer(document.getElementById("p6LifeDown"));
+        manager6.on(
+          "press",
+          function () {
+            this.p6.life = this.p6.life - 10;
+          }.bind(this)
+        );
 
-      manager6.on(
-        "tap",
-        function () {
-          this.p6.life--;
-        }.bind(this)
-      );
+        manager6.on(
+          "tap",
+          function () {
+            this.p6.life--;
+          }.bind(this)
+        );
 
-      var manager12 = new Hammer(document.getElementById("p6LifeUp"));
-      manager12.on(
-        "press",
-        function () {
-          this.p6.life = this.p6.life + 10;
-        }.bind(this)
-      );
+        var manager12 = new Hammer(document.getElementById("p6LifeUp"));
+        manager12.on(
+          "press",
+          function () {
+            this.p6.life = this.p6.life + 10;
+          }.bind(this)
+        );
 
-      manager12.on(
-        "tap",
-        function () {
-          this.p6.life++;
-        }.bind(this)
-      );
+        manager12.on(
+          "tap",
+          function () {
+            this.p6.life++;
+          }.bind(this)
+        );
+      }
     }
   }
 
