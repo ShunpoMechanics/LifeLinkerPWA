@@ -11,7 +11,6 @@ import { Player } from "../models/player";
 import { GameService } from "../services/game/game.service";
 import { PlayerProfileService } from "../services/playerProfile/player-service.service";
 
-import { HammerGestureConfig } from "@angular/platform-browser";
 import * as Hammer from "hammerjs";
 
 @Component({
@@ -22,7 +21,10 @@ import * as Hammer from "hammerjs";
 export class HomePage implements OnInit {
   playerCount = 2;
   p1Name: string;
-  highestInit = 2;
+  p3Inited = false;
+  p4Inited = false;
+  p5Inited = false;
+  p6Inited = false;
   p1: Player = {
     position: 1,
     life: 40,
@@ -426,8 +428,7 @@ export class HomePage implements OnInit {
       this.gameService.game.playerCount++;
     }
 
-    if (this.highestInit < this.playerCount) {
-      if (this.playerCount == 3) {
+      if (this.playerCount == 3 && !this.p3Inited) {
         var manager2 = new Hammer(document.getElementById("p2LifeDown"));
         manager2.on(
           "press",
@@ -457,9 +458,11 @@ export class HomePage implements OnInit {
             this.p2.life++;
           }.bind(this)
         );
+        
+        this.p3Inited = true;
       }
 
-      else if (this.playerCount == 4) {
+      else if (this.playerCount == 4 && !this.p4Inited) {
         var manager4 = new Hammer(document.getElementById("p4LifeDown"));
         manager4.on(
           "press",
@@ -489,9 +492,11 @@ export class HomePage implements OnInit {
             this.p4.life++;
           }.bind(this)
         );
+        
+        this.p4Inited = true;
       }
 
-      else if (this.playerCount == 5) {
+      else if (this.playerCount == 5 && !this.p5Inited) {
         var manager5 = new Hammer(document.getElementById("p5LifeDown"));
         manager5.on(
           "press",
@@ -521,8 +526,10 @@ export class HomePage implements OnInit {
             this.p5.life++;
           }.bind(this)
         );
+        
+        this.p5Inited = true;
       }
-      else if (this.playerCount == 6) {
+      else if (this.playerCount == 6 && !this.p6Inited) {
         var manager6 = new Hammer(document.getElementById("p6LifeDown"));
         manager6.on(
           "press",
@@ -552,8 +559,9 @@ export class HomePage implements OnInit {
             this.p6.life++;
           }.bind(this)
         );
+
+        this.p6Inited = true;
       }
-    }
   }
 
   removePlayer() {
