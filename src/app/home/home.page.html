@@ -16,57 +16,57 @@
     </ion-row>
     <ion-row>
       <!-- Player 1 -->
-      <ion-col id="player1" class="playerbox" [ngStyle]="{'background' : p1.color, 'color' : fontColor(p1.color)}" >
-        <ion-col (click)="lowerLife('p1Life')"> - </ion-col>
+      <ion-col id="player1" class="playerbox" [ngStyle]="{'background' : p1.color, 'color' : fontColor(p1.color), 'display' : 'flex'}" >
+        <ion-col id="p1LifeDown"> - </ion-col>
         <ion-col routerLink="/profile" (click)="this.setPlayer(p1, p1Name)">
           {{p1.life}}
         </ion-col>
-        <ion-col (click)="raiseLife('p1Life')"> + </ion-col>
+        <ion-col id="p1LifeUp"> + </ion-col>
       </ion-col>
       <!-- Player 2 -->
-      <ion-col id="player2" class="playerbox" [ngStyle]="{'background' : p2.color, 'color' : fontColor(p2.color)}" *ngIf="playerCount > 2">
-        <ion-col (click)="lowerLife('p2Life')"> - </ion-col>
+      <ion-col id="player2" class="playerbox" [ngStyle]="{'background' : p2.color, 'color' : fontColor(p2.color), 'display' : hideOrShow(3)}">
+        <ion-col id="p2LifeDown"> - </ion-col>
         <ion-col routerLink="/profile" (click)="this.setPlayer(p2, p2Name)">
           {{p2.life}}
         </ion-col>
-        <ion-col (click)="raiseLife('p2Life')"> + </ion-col>
+        <ion-col id="p2LifeUp"> + </ion-col>
       </ion-col>
       <!-- Player 5 -->
-      <ion-col id="player5" class="playerbox" [ngStyle]="{'background' : p5.color, 'color' : fontColor(p5.color)}" *ngIf="playerCount > 4">
-        <ion-col (click)="lowerLife('p5Life')"> - </ion-col>
+      <ion-col id="player5" class="playerbox" [ngStyle]="{'background' : p5.color, 'color' : fontColor(p5.color), 'display' : hideOrShow(5)}">
+        <ion-col id="p5LifeDown"> - </ion-col>
         <ion-col routerLink="/profile" (click)="this.setPlayer(p5, p5Name)">
           {{p5.life}}
         </ion-col>
-        <ion-col (click)="raiseLife('p5Life')"> + </ion-col>
+        <ion-col id="p5LifeUp"> + </ion-col>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <!-- Player 3 -->
-      <ion-col id="player3" class="playerbox" [ngStyle]="{'background' : p3.color, 'color' : fontColor(p3.color)}">
-        <ion-col (click)="lowerLife('p3Life')"> - </ion-col>
+      <ion-col id="player3" class="playerbox" [ngStyle]="{'background' : p3.color, 'color' : fontColor(p3.color), 'display' : 'flex'}">
+        <ion-col id="p3LifeDown"> - </ion-col>
         <ion-col routerLink="/profile" (click)="this.setPlayer(p3, p3Name)">
           {{p3.life}}
         </ion-col>
-        <ion-col (click)="raiseLife('p3Life')"> + </ion-col>
+        <ion-col id="p3LifeUp"> + </ion-col>
       </ion-col>
 
         <!-- Player 4 -->
-        <ion-col id="player4" class="playerbox" [ngStyle]="{'background' : p4.color, 'color' : fontColor(p4.color)}" *ngIf="playerCount > 3">
-        <ion-col (click)="lowerLife('p4Life')"> - </ion-col>
+        <ion-col id="player4" class="playerbox" [ngStyle]="{'background' : p4.color, 'color' : fontColor(p4.color), 'display' : hideOrShow(4)}">
+        <ion-col id="p4LifeDown"> - </ion-col>
         <ion-col routerLink="/profile" (click)="this.setPlayer(p4, p4Name)">
           {{p4.life}}
         </ion-col>
-        <ion-col (click)="raiseLife('p4Life')"> + </ion-col>
+        <ion-col id="p4LifeUp"> + </ion-col>
       </ion-col>
 
       <!-- Player 6 -->
-      <ion-col id="player6" class="playerbox" [ngStyle]="{'background' : p6.color, 'color' : fontColor(p6.color)}" *ngIf="playerCount > 5">
-        <ion-col (click)="lowerLife('p6Life')"> - </ion-col>
+      <ion-col id="player6" class="playerbox" [ngStyle]="{'background' : p6.color, 'color' : fontColor(p6.color), 'display' : hideOrShow(6)}">
+        <ion-col id="p6LifeDown"> - </ion-col>
         <ion-col routerLink="/profile" (click)="this.setPlayer(p6, p6Name)">
           {{p6.life}}
         </ion-col>
-        <ion-col (click)="raiseLife('p6Life')"> + </ion-col>
+        <ion-col id="p6LifeUp"> + </ion-col>
       </ion-col>
     </ion-row>
     <ion-row style="height: 12px">
