@@ -20,8 +20,17 @@ ion-row {
   align-items: center!important;
 }
 
+.boxes {
+  height: 50vw; 
+  max-width: 90%;
+}
+
+ion-icon {
+  margin-bottom: 16px;
+}
+
 ion-grid {
-  height: 85%;
+  height: 88%;
 }
 
 @media(orientation: portrait) {
