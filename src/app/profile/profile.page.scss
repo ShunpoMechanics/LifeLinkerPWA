@@ -21,8 +21,17 @@ ion-back-button {
 }
 
 ion-content {
-    font-size: larger;
+    font-size: large;
     font-family: Arial;
+}
+
+/* ipad Mini Landscape */
+@media only screen and (width:1024px) and (resolution: 163dpi) {
+    ion-content {
+        font-size: larger;
+        font-family: Arial;
+    }
+    
 }
 
 .colorPicker {
