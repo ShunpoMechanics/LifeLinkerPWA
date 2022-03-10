@@ -25,6 +25,8 @@ export class HomePage implements OnInit {
   p4Inited = false;
   p5Inited = false;
   p6Inited = false;
+  diceNotRolled = true;
+  diceResult = 0;
   p1: Player = {
     position: 1,
     life: 40,
@@ -650,5 +652,9 @@ export class HomePage implements OnInit {
     this.p6.infect = 0;
     // this.p4.partners = false;
     // this.game.game.player4Partners = false;
+  }
+
+  rollDice() {
+    this.diceResult = Math.floor(Math.random() * 6);
   }
 }

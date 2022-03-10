@@ -18,10 +18,40 @@ ion-row {
   width: 95%;
   align-content: center!important;
   align-items: center!important;
+  font-family: Arial;
+}
+
+.namebox {
+  transform: rotate(90deg);
+  /* Legacy vendor prefixes that you probably don't need... */
+
+  /* Safari */
+  -webkit-transform: rotate(90deg);
+
+  /* Firefox */
+  -moz-transform: rotate(90deg);
+
+  /* IE */
+  -ms-transform: rotate(90deg);
+
+  /* Opera */
+  -o-transform: rotate(90deg);
+
+  /* Internet Explorer */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+.boxes {
+  height: 50vw; 
+  max-width: 90%;
+}
+
+ion-icon {
+  margin-bottom: 16px;
 }
 
 ion-grid {
-  height: 85%;
+  height: 88%;
 }
 
 @media(orientation: portrait) {

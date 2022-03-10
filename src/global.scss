@@ -25,6 +25,16 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+@font-face {
+  font-family: 'Crash-Gothic';
+  src: url('/src/assets/Crashnumberinggothic-MAjp.ttf') format(truetype);
+}
+
+@font-face {
+  font-family: 'Crash-Serif';
+  src: url('/src/assets/Crashnumberingserif-KVjW.ttf') format(truetype);
+}
+
 @media screen and (orientation: portrait) {
     ion-content {
       /* Rotate the content container */
