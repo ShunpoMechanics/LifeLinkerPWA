@@ -12,7 +12,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content style="height: 100vh">
   <!-- Player 1 -->
 <ion-row *ngIf="player.position == 1">
   <ion-row style="padding-left: 5px">
@@ -98,7 +98,7 @@
     +
   </ion-col>
 </ion-row>
-<ion-row *ngIf="player.position != 2">
+<ion-row *ngIf="player.position != 2 && gameService.game.playerCount > 2">
   <ion-col>
     {{gameService.game.player2Commander1}} :
   </ion-col>
@@ -150,7 +150,7 @@
     +
   </ion-col>
 </ion-row>
-<ion-row *ngIf="player.position != 4">
+<ion-row *ngIf="player.position != 4 && gameService.game.playerCount > 3">
   <ion-col>
     {{gameService.game.player4Commander1}} :
   </ion-col>
