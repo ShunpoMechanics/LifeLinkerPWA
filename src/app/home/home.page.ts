@@ -19,8 +19,11 @@ import * as Hammer from "hammerjs";
   styleUrls: ["home.page.scss"],
 })
 export class HomePage implements OnInit {
+
+  //#region 
   playerCount = 2;
   p1Name: string;
+  orientation = '';
   p3Inited = false;
   p4Inited = false;
   p5Inited = false;
@@ -146,7 +149,8 @@ export class HomePage implements OnInit {
     partners: false,
     color: "black",
   };
-
+  // 
+  #endregion
   subscriptions: Subscription[] = [];
 
   constructor(
@@ -160,6 +164,7 @@ export class HomePage implements OnInit {
   ngOnInit(): void {
     this.initUpdater();
     this.initListeners();
+    this.orientation = screen.orientation.type;
     this.gameService.game.playerCount = 2;
   }
 

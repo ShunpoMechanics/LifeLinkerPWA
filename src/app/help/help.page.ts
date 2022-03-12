@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-help',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HelpPage implements OnInit {
 
+  version: string;
   constructor() { }
 
   ngOnInit() {
+    this.version = environment.versionNumber;
   }
 
 }

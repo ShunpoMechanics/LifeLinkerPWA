@@ -8,121 +8,294 @@
   <div style="display: inline-block;" *ngIf="playerCount < 6" (click)="addPlayer()">
     Add Player
   </div> -->
-  <ion-grid>
-    <!-- Sidebar -->
-    <ion-row style="height: 100%">
-      <ion-col style="max-width: 8%; padding: 8px; text-align: -webkit-center">
-        <ion-icon name="reload-outline" (click)="promptRestart()"></ion-icon>
-        <ion-icon
-          name="person-add-outline"
-          (click)="addPlayer()"
-          [ngStyle]="{'visibility' : playerCount != 6 ? 'visible' : 'hidden'}"
-        ></ion-icon>
-        <ion-icon
-          name="person-remove-outline"
-          (click)="removePlayer()"
-          [ngStyle]="{'visibility' : playerCount != 2 ? 'visible' : 'hidden'}"
-        ></ion-icon>
-        <ion-icon name="help-outline" routerLink="/help"></ion-icon>
-        <ion-icon name="construct-outline" routerLink="/quick-start"></ion-icon>
-        <!-- <ion-icon
+  <span id="landscape" class="landscape-view">
+    <ion-grid>
+      <!-- Sidebar -->
+      <ion-row style="height: 100%">
+        <ion-col
+          style="max-width: 8%; padding: 8px; text-align: -webkit-center"
+        >
+          <ion-icon name="reload-outline" (click)="promptRestart()"></ion-icon>
+          <ion-icon
+            name="person-add-outline"
+            (click)="addPlayer()"
+            [ngStyle]="{'visibility' : playerCount != 6 ? 'visible' : 'hidden'}"
+          ></ion-icon>
+          <ion-icon
+            name="person-remove-outline"
+            (click)="removePlayer()"
+            [ngStyle]="{'visibility' : playerCount != 2 ? 'visible' : 'hidden'}"
+          ></ion-icon>
+          <ion-icon name="help-outline" routerLink="/help"></ion-icon>
+          <ion-icon
+            name="construct-outline"
+            routerLink="/quick-start"
+          ></ion-icon>
+          <!-- <ion-icon
           name="dice-outline"
           *ngIf="diceResult == 0"
         ></ion-icon> -->
-      </ion-col>
-
-      <!-- Main App -->
-      <!-- Life squares -->
-      <ion-col class="boxes">
-        <ion-row>
-          <!-- Player 1 -->
-          <ion-col
-            id="player1"
-            class="playerbox"
-            [ngStyle]="{'background' : p1.color, 'color' : fontColor(p1.color), 'display' : 'flex'}">
-            <label class="namebox">{{gameService.game.player1Name}}</label>
-
-            <ion-col id="p1LifeDown"> - </ion-col>
-            <ion-col routerLink="/profile" (click)="this.setPlayer(p1, p1Name)">
-              {{p1.life}}
-            </ion-col>
-            <ion-col id="p1LifeUp"> + </ion-col>
-          </ion-col>
-          <!-- Player 3 -->
-          <ion-col
-            id="player3"
-            class="playerbox"
-            [ngStyle]="{'background' : p3.color, 'color' : fontColor(p3.color), 'display' : hideOrShow(3)}"
-          >
-            <label class="namebox">{{gameService.game.player3Name}}</label>
-            <ion-col id="p3LifeDown"> - </ion-col>
-            <ion-col routerLink="/profile" (click)="this.setPlayer(p3, p3Name)">
-              {{p3.life}}
-            </ion-col>
-            <ion-col id="p3LifeUp"> + </ion-col>
-          </ion-col>
-          <!-- Player 5 -->
-          <ion-col
-            id="player5"
-            class="playerbox"
-            [ngStyle]="{'background' : p5.color, 'color' : fontColor(p5.color), 'display' : hideOrShow(5)}"
-          >
-            <label class="namebox">{{gameService.game.player5Name}}</label>
-            <ion-col id="p5LifeDown"> - </ion-col>
-            <ion-col routerLink="/profile" (click)="this.setPlayer(p5, p5Name)">
-              {{p5.life}}
-            </ion-col>
-            <ion-col id="p5LifeUp"> + </ion-col>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-        <!-- Player 2 -->
-        <ion-col
-        id="player2"
-        class="playerbox"
-        [ngStyle]="{'background' : p2.color, 'color' : fontColor(p2.color), 'display' : 'flex'}"
-        >
-        <label class="namebox">{{gameService.game.player2Name}}</label>
-        <ion-col id="p2LifeDown"> - </ion-col>
-        <ion-col routerLink="/profile" (click)="this.setPlayer(p2, p2Name)">
-          {{p2.life}}
-        </ion-col>
-        <ion-col id="p2LifeUp"> + </ion-col>
         </ion-col>
 
-          <!-- Player 4 -->
-          <ion-col
-            id="player4"
-            class="playerbox"
-            [ngStyle]="{'background' : p4.color, 'color' : fontColor(p4.color), 'display' : hideOrShow(4)}"
-          >
-            <label class="namebox">{{gameService.game.player4Name}}</label>
-            <ion-col id="p4LifeDown"> - </ion-col>
-            <ion-col routerLink="/profile" (click)="this.setPlayer(p4, p4Name)">
-              {{p4.life}}
-            </ion-col>
-            <ion-col id="p4LifeUp"> + </ion-col>
-          </ion-col>
+        <!-- Main App -->
+        <!-- Life squares -->
+        <ion-col class="boxes">
+          <ion-row>
+            <!-- Player 1 -->
+            <ion-col
+              id="player1"
+              class="playerbox"
+              [ngStyle]="{'background' : p1.color, 'color' : fontColor(p1.color), 'display' : 'flex'}"
+            >
+              <label class="namebox">{{gameService.game.player1Name}}</label>
 
+              <ion-col id="p1LifeDown"> - </ion-col>
+              <ion-col
+                routerLink="/profile"
+                (click)="this.setPlayer(p1, p1Name)"
+              >
+                {{p1.life}}
+              </ion-col>
+              <ion-col id="p1LifeUp"> + </ion-col>
+            </ion-col>
+            <!-- Player 3 -->
+            <ion-col
+              id="player3"
+              class="playerbox"
+              [ngStyle]="{'background' : p3.color, 'color' : fontColor(p3.color), 'display' : hideOrShow(3)}"
+            >
+              <label class="namebox">{{gameService.game.player3Name}}</label>
+              <ion-col id="p3LifeDown"> - </ion-col>
+              <ion-col
+                routerLink="/profile"
+                (click)="this.setPlayer(p3, p3Name)"
+              >
+                {{p3.life}}
+              </ion-col>
+              <ion-col id="p3LifeUp"> + </ion-col>
+            </ion-col>
+            <!-- Player 5 -->
+            <ion-col
+              id="player5"
+              class="playerbox"
+              [ngStyle]="{'background' : p5.color, 'color' : fontColor(p5.color), 'display' : hideOrShow(5)}"
+            >
+              <label class="namebox">{{gameService.game.player5Name}}</label>
+              <ion-col id="p5LifeDown"> - </ion-col>
+              <ion-col
+                routerLink="/profile"
+                (click)="this.setPlayer(p5, p5Name)"
+              >
+                {{p5.life}}
+              </ion-col>
+              <ion-col id="p5LifeUp"> + </ion-col>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <!-- Player 2 -->
+            <ion-col
+              id="player2"
+              class="playerbox"
+              [ngStyle]="{'background' : p2.color, 'color' : fontColor(p2.color), 'display' : 'flex'}"
+            >
+              <label class="namebox">{{gameService.game.player2Name}}</label>
+              <ion-col id="p2LifeDown"> - </ion-col>
+              <ion-col
+                routerLink="/profile"
+                (click)="this.setPlayer(p2, p2Name)"
+              >
+                {{p2.life}}
+              </ion-col>
+              <ion-col id="p2LifeUp"> + </ion-col>
+            </ion-col>
+
+            <!-- Player 4 -->
+            <ion-col
+              id="player4"
+              class="playerbox"
+              [ngStyle]="{'background' : p4.color, 'color' : fontColor(p4.color), 'display' : hideOrShow(4)}"
+            >
+              <label class="namebox">{{gameService.game.player4Name}}</label>
+              <ion-col id="p4LifeDown"> - </ion-col>
+              <ion-col
+                routerLink="/profile"
+                (click)="this.setPlayer(p4, p4Name)"
+              >
+                {{p4.life}}
+              </ion-col>
+              <ion-col id="p4LifeUp"> + </ion-col>
+            </ion-col>
+
+            <!-- Player 6 -->
+            <ion-col
+              id="player6"
+              class="playerbox"
+              [ngStyle]="{'background' : p6.color, 'color' : fontColor(p6.color), 'display' : hideOrShow(6)}"
+            >
+              <label class="namebox">{{gameService.game.player6Name}}</label>
+              <ion-col id="p6LifeDown"> - </ion-col>
+              <ion-col
+                routerLink="/profile"
+                (click)="this.setPlayer(p6, p6Name)"
+              >
+                {{p6.life}}
+              </ion-col>
+              <ion-col id="p6LifeUp"> + </ion-col>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div>
+      <!-- Jonathan Correa -->
+    </div>
+  </span>
+  <span id="landscape" class="portrait-view">
+    <ion-grid>
+      <!-- Sidebar -->
+      <ion-row style="height: 100%; border-bottom: 1px white solid;">
+        <ion-col style="padding: 8px; text-align: -webkit-center">
+          <ion-icon name="reload-outline" (click)="promptRestart()"></ion-icon>
+          <ion-icon
+            name="person-add-outline"
+            (click)="addPlayer()"
+            [ngStyle]="{'visibility' : playerCount != 6 ? 'visible' : 'hidden'}"
+          ></ion-icon>
+          <ion-icon
+            name="person-remove-outline"
+            (click)="removePlayer()"
+            [ngStyle]="{'visibility' : playerCount != 2 ? 'visible' : 'hidden'}"
+          ></ion-icon>
+          <ion-icon name="help-outline" routerLink="/help"></ion-icon>
+          <ion-icon
+            name="construct-outline"
+            routerLink="/quick-start"
+          ></ion-icon>
+          <!-- <ion-icon
+          name="dice-outline"
+          *ngIf="diceResult == 0"
+        ></ion-icon> -->
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <!-- Main App -->
+        <!-- Life squares -->
+        <ion-col class="tallboxes">
+          <ion-row>
+            <!-- Player 1 -->
+            <ion-col
+              id="player1"
+              class="playerbox"
+              [ngStyle]="{'background' : p1.color, 'color' : fontColor(p1.color), 'display' : 'flex'}"
+            >
+              <label class="namebox">{{gameService.game.player1Name}}</label>
+
+              <ion-col id="p1LifeDown"> - </ion-col>
+              <ion-col
+                routerLink="/profile"
+                (click)="this.setPlayer(p1, p1Name)"
+              >
+                {{p1.life}}
+              </ion-col>
+              <ion-col id="p1LifeUp"> + </ion-col>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <!-- Player 2 -->
+            <ion-col
+              id="player2"
+              class="playerbox"
+              [ngStyle]="{'background' : p2.color, 'color' : fontColor(p2.color), 'display' : 'flex'}"
+            >
+              <label class="namebox">{{gameService.game.player2Name}}</label>
+              <ion-col id="p2LifeDown"> - </ion-col>
+              <ion-col
+                routerLink="/profile"
+                (click)="this.setPlayer(p2, p2Name)"
+              >
+                {{p2.life}}
+              </ion-col>
+              <ion-col id="p2LifeUp"> + </ion-col>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <!-- Player 3 -->
+            <ion-col
+              id="player3"
+              class="playerbox"
+              [ngStyle]="{'background' : p3.color, 'color' : fontColor(p3.color), 'display' : hideOrShow(3)}"
+            >
+              <label class="namebox">{{gameService.game.player3Name}}</label>
+              <ion-col id="p3LifeDown"> - </ion-col>
+              <ion-col
+                routerLink="/profile"
+                (click)="this.setPlayer(p3, p3Name)"
+              >
+                {{p3.life}}
+              </ion-col>
+              <ion-col id="p3LifeUp"> + </ion-col>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <!-- Player 4 -->
+            <ion-col
+              id="player4"
+              class="playerbox"
+              [ngStyle]="{'background' : p4.color, 'color' : fontColor(p4.color), 'display' : hideOrShow(4)}"
+            >
+              <label class="namebox">{{gameService.game.player4Name}}</label>
+              <ion-col id="p4LifeDown"> - </ion-col>
+              <ion-col
+                routerLink="/profile"
+                (click)="this.setPlayer(p4, p4Name)"
+              >
+                {{p4.life}}
+              </ion-col>
+              <ion-col id="p4LifeUp"> + </ion-col>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <!-- Player 5 -->
+            <ion-col
+              id="player5"
+              class="playerbox"
+              [ngStyle]="{'background' : p5.color, 'color' : fontColor(p5.color), 'display' : hideOrShow(5)}"
+            >
+              <label class="namebox">{{gameService.game.player5Name}}</label>
+              <ion-col id="p5LifeDown"> - </ion-col>
+              <ion-col
+                routerLink="/profile"
+                (click)="this.setPlayer(p5, p5Name)"
+              >
+                {{p5.life}}
+              </ion-col>
+              <ion-col id="p5LifeUp"> + </ion-col>
+            </ion-col>
+          </ion-row>
           <!-- Player 6 -->
-          <ion-col
-            id="player6"
-            class="playerbox"
-            [ngStyle]="{'background' : p6.color, 'color' : fontColor(p6.color), 'display' : hideOrShow(6)}"
-          >
-            <label class="namebox">{{gameService.game.player6Name}}</label>
-            <ion-col id="p6LifeDown"> - </ion-col>
-            <ion-col routerLink="/profile" (click)="this.setPlayer(p6, p6Name)">
-              {{p6.life}}
+          <ion-row>
+            <ion-col
+              id="player6"
+              class="playerbox"
+              [ngStyle]="{'background' : p6.color, 'color' : fontColor(p6.color), 'display' : hideOrShow(6)}"
+            >
+              <label class="namebox">{{gameService.game.player6Name}}</label>
+              <ion-col id="p6LifeDown"> - </ion-col>
+              <ion-col
+                routerLink="/profile"
+                (click)="this.setPlayer(p6, p6Name)"
+              >
+                {{p6.life}}
+              </ion-col>
+              <ion-col id="p6LifeUp"> + </ion-col>
             </ion-col>
-            <ion-col id="p6LifeUp"> + </ion-col>
-          </ion-col>
-        </ion-row>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <div>
-    <!-- Jonathan Correa -->
-  </div>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div>
+      <!-- Jonathan Correa -->
+    </div>
+  </span>
 </ion-content>

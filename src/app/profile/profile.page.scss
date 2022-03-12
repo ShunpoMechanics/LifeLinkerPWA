@@ -1,12 +1,33 @@
-ion-input {
+ 
+  ion-input {
     background-color: white;
     color: black;
     height: 25px;
-    max-width: 250px;
+    max-width: 163px;
     margin-left: 24px;
     margin-bottom: 12px;
-    color:"ion-text-color"
+    display: inline-block;
 }
+
+@media screen and (orientation: portrait) {
+    ion-input {
+        max-width: 156px;
+    }
+    
+}
+
+ion-header {
+    margin-bottom: 8px;
+    border-bottom: 1px solid white;
+}
+
+ion-input {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
 
 .toolbar-input {
     margin-top: 8px;

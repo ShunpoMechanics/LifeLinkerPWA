@@ -1,3 +1,51 @@
+@media screen and (orientation: portrait) {
+  .landscape-view {
+    display: none;
+  }
+
+  .portrait-view {
+    display: block;
+  }
+
+  ion-icon {
+    margin-right: 16px;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  .landscape-view {
+    display: block;
+  }
+
+  .portrait-view {
+    display: none;
+  }
+
+  ion-icon {
+    margin-bottom: 16px;
+  }
+  
+  .namebox {
+    transform: rotate(90deg);
+    /* Legacy vendor prefixes that you probably don't need... */
+
+    /* Safari */
+    -webkit-transform: rotate(90deg);
+
+    /* Firefox */
+    -moz-transform: rotate(90deg);
+
+    /* IE */
+    -ms-transform: rotate(90deg);
+
+    /* Opera */
+    -o-transform: rotate(90deg);
+
+    /* Internet Explorer */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  }
+}
+
 ion-content {
   text-align: center;
   font-size: 40px;
@@ -11,52 +59,33 @@ ion-row {
 }
 
 .playerbox {
-  border: 1px solid white; 
+  border: 1px solid white;
   border-radius: 5px;
   height: 100%;
   margin-right: 4px;
   width: 95%;
-  align-content: center!important;
-  align-items: center!important;
+  align-content: center !important;
+  align-items: center !important;
   font-family: Arial;
 }
 
-.namebox {
-  transform: rotate(90deg);
-  /* Legacy vendor prefixes that you probably don't need... */
-
-  /* Safari */
-  -webkit-transform: rotate(90deg);
-
-  /* Firefox */
-  -moz-transform: rotate(90deg);
-
-  /* IE */
-  -ms-transform: rotate(90deg);
-
-  /* Opera */
-  -o-transform: rotate(90deg);
-
-  /* Internet Explorer */
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-}
-
 .boxes {
-  height: 50vw; 
+  height: 50vw;
   max-width: 90%;
 }
 
-ion-icon {
-  margin-bottom: 16px;
+.tall-boxes {
+  height: 100vh;
+  max-width: 90%;
 }
 
 ion-grid {
   height: 88%;
 }
 
-@media(orientation: portrait) {
+@media (orientation: portrait) {
   ion-content {
-   padding-top: constant(safe-area-inset-top); //ios 11.2
-   padding-top: env(safe-area-inset-top); //ios 11.1
-}
+    padding-top: constant(safe-area-inset-top); //ios 11.2
+    padding-top: env(safe-area-inset-top); //ios 11.1
+  }
 }
