@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'quick-start',
     pathMatch: 'full'
   },
   {
@@ -22,7 +22,12 @@ const routes: Routes = [
   {
     path: 'color-picker',
     loadChildren: () => import('./color-picker/color-picker.module').then( m => m.ColorPickerPageModule)
+  },
+  {
+    path: 'quick-start',
+    loadChildren: () => import('./quick-start/quick-start.module').then( m => m.QuickStartPageModule)
   }
+
 ];
 
 @NgModule({

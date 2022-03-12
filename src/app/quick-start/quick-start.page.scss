@@ -1,0 +1,22 @@
+ion-col {
+    align-content: center!important;
+    align-items: center!important;
+}
+
+ion-content {
+    text-align: center;
+    font-size: 40px;
+  }
+  
+  ion-row {
+    height: 45%;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+  }
+
+  ion-button {
+      display: block;
+      height: 25vh;
+  }
+  
