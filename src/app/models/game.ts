@@ -31,4 +31,13 @@ export interface Game {
     player6Commander2?: string;
 
     playerCount: number;
+
+    player1color: string;
+    player2color: string;
+    player3color: string;
+    player4color: string;
+    player5color: string;
+    player6color: string;
+
+    guidedStart: boolean;
 }

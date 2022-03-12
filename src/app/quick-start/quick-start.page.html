@@ -8,8 +8,8 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-button size="large" routerLink="/home">Quick Start</ion-button>
-        <ion-button size="large">Guided Start</ion-button>
+        <ion-button size="large" routerLink="/home/true">Quick Start</ion-button>
+        <ion-button size="large" routerLink="/home/false" (click)="this.setPlayer(p1, '')" >Guided Start</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>  

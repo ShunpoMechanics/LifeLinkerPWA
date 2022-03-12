@@ -12,6 +12,7 @@ import { GameService } from "../services/game/game.service";
 import { PlayerProfileService } from "../services/playerProfile/player-service.service";
 
 import * as Hammer from "hammerjs";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-home",
@@ -149,6 +150,9 @@ export class HomePage implements OnInit {
     partners: false,
     color: "black",
   };
+  
+  quickstart = false;
+  step = 1;
   // 
   #endregion
   subscriptions: Subscription[] = [];
@@ -158,14 +162,48 @@ export class HomePage implements OnInit {
     private updater: SwUpdate,
     private alertController: AlertController,
     private appRef: ApplicationRef,
-    public player: PlayerProfileService,
-    public gameService: GameService
-  ) {}
+    public playerService: PlayerProfileService,
+    public gameService: GameService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.quickstart = this.route.snapshot.params['quickstart'] == 'true';
+  }
+
   ngOnInit(): void {
     this.initUpdater();
-    this.initListeners();
     this.orientation = screen.orientation.type;
-    this.gameService.game.playerCount = 2;
+   
+    if(this.orientation.includes("landscape"))
+    {
+      this.gameService.game.player1color = 'black';
+      this.gameService.game.player4color = 'black';
+      this.gameService.game.player5color = 'black';
+      this.gameService.game.player2color = 'white';
+      this.gameService.game.player3color = 'white';
+      this.gameService.game.player6color = 'white';
+    }
+
+    if(this.quickstart)
+    {
+      this.p1.color = this.gameService.game.player1color;
+      this.p2.color = this.gameService.game.player2color;
+      this.p3.color = this.gameService.game.player3color;
+      this.p4.color = this.gameService.game.player4color;
+      this.p5.color = this.gameService.game.player5color;
+      this.p6.color = this.gameService.game.player6color;
+      console.log(this.gameService.game.guidedStart)
+      this.playerCount = this.gameService.game.guidedStart ? this.gameService.game.playerCount : 2;
+    }
+  }
+
+  ngAfterViewInit() {
+    if(this.quickstart)
+    {
+
+      this.initListeners();
+
+    }
   }
 
   initListeners() {
@@ -185,21 +223,6 @@ export class HomePage implements OnInit {
       }.bind(this)
     );
 
-    var manager3 = new Hammer(document.getElementById("p3LifeDown"));
-    manager3.on(
-      "press",
-      function () {
-        this.p3.life = this.p3.life - 10;
-      }.bind(this)
-    );
-
-    manager3.on(
-      "tap",
-      function () {
-        this.p3.life--;
-      }.bind(this)
-    );
-
     // Raise Life
     var manager7 = new Hammer(document.getElementById("p1LifeUp"));
     manager7.on(
@@ -216,20 +239,41 @@ export class HomePage implements OnInit {
       }.bind(this)
     );
 
-    var manager9 = new Hammer(document.getElementById("p3LifeUp"));
-    manager9.on(
+    
+    var manager2 = new Hammer(document.getElementById("p2LifeDown"));
+    manager2.on(
       "press",
       function () {
-        this.p3.life = this.p3.life + 10;
+        this.p2.life = this.p2.life - 10;
       }.bind(this)
     );
 
-    manager9.on(
+    manager2.on(
       "tap",
       function () {
-        this.p3.life++;
+        this.p2.life--;
       }.bind(this)
     );
+
+    var manager8 = new Hammer(document.getElementById("p2LifeUp"));
+    manager8.on(
+      "press",
+      function () {
+        this.p2.life = this.p2.life + 10;
+      }.bind(this)
+    );
+
+    manager8.on(
+      "tap",
+      function () {
+        this.p2.life++;
+      }.bind(this)
+    );
+  }
+
+  togglePartners(player: Player) {
+    player.partners = !player.partners;
+    this.gameService.setPartners(player.position);
   }
 
   fontColor(color: string) {
@@ -347,7 +391,7 @@ export class HomePage implements OnInit {
   }
 
   setPlayer(player: Player, playerName: string) {
-    this.player.setPlayer(player, playerName);
+    this.playerService.setPlayer(player, playerName);
   }
 
   lowerLife(id: string) {
@@ -425,45 +469,80 @@ export class HomePage implements OnInit {
     }
   }
 
+  
+  promptTotalRestart() {
+    if (confirm("Are you sure you want to start from scratch in the guided start?")) {
+      this.step = 1;
+      this.router.navigateByUrl("/home/false");
+    }
+  }
+
   hideOrShow(position: number) {
     if (position <= this.playerCount) return "flex";
     return "none";
   }
 
+  done() {
+    this.gameService.game.playerCount = this.step;
+    this.quickstart = false;
+    this.gameService.game.guidedStart = true;
+    this.gameService.game.player1color = this.p1.color;
+    this.gameService.game.player2color = this.p2.color;
+    this.gameService.game.player3color = this.p3.color;
+    this.gameService.game.player4color = this.p4.color;
+    this.gameService.game.player5color = this.p5.color;
+    this.gameService.game.player6color = this.p6.color;
+    this.router.navigate(["/home/true"]);
+    // document.getElementById("guidedstart").style.display = 'none';
+    // if(this.orientation.includes("landscape"))
+    //   document.getElementById('landscape').style.display = 'block';
+    // if(this.orientation.includes('portrait'))
+    //   document.getElementById('portrait').style.display = 'block';
+  }
+
   addPlayer() {
+    if(!this.quickstart)
+    {
+      this.step++;
+    }
+
+    if(this.quickstart)
+    {
     if (this.playerCount < 6) {
       this.playerCount++;
       this.gameService.game.playerCount++;
     }
 
       if (this.playerCount == 3 && !this.p3Inited) {
-        var manager2 = new Hammer(document.getElementById("p2LifeDown"));
-        manager2.on(
+
+
+        var manager3 = new Hammer(document.getElementById("p3LifeDown"));
+        manager3.on(
           "press",
           function () {
-            this.p2.life = this.p2.life - 10;
+            this.p3.life = this.p3.life - 10;
           }.bind(this)
         );
-
-        manager2.on(
+    
+        manager3.on(
           "tap",
           function () {
-            this.p2.life--;
+            this.p3.life--;
           }.bind(this)
         );
-
-        var manager8 = new Hammer(document.getElementById("p2LifeUp"));
-        manager8.on(
+    
+        var manager9 = new Hammer(document.getElementById("p3LifeUp"));
+        manager9.on(
           "press",
           function () {
-            this.p2.life = this.p2.life + 10;
+            this.p3.life = this.p3.life + 10;
           }.bind(this)
         );
-
-        manager8.on(
+    
+        manager9.on(
           "tap",
           function () {
-            this.p2.life++;
+            this.p3.life++;
           }.bind(this)
         );
         
@@ -570,6 +649,7 @@ export class HomePage implements OnInit {
 
         this.p6Inited = true;
       }
+    }
   }
 
   removePlayer() {

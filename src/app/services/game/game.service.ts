@@ -38,7 +38,15 @@ export class GameService {
     player5Commander2: 'Player 5 Commander 2',
     player6Commander2: 'Player 6 Commander 2',
 
-    playerCount: 4
+    player1color: 'black',
+    player2color: 'white',
+    player3color: 'black',
+    player4color: 'white',
+    player5color: 'black',
+    player6color: 'white',
+
+    playerCount: 4,
+    guidedStart: false
   };
 
   getName(id: number) {

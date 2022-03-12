@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-row>
+    <ion-row style="padding: 0">
     <ion-back-button></ion-back-button>
     <span *ngIf="player.position == 1">
       <ion-input placeholder="Player 1" class="toolbar-input" [(ngModel)]="gameService.game.player1Name"></ion-input> <!--When text is entered, run setName-->
@@ -9,7 +9,7 @@
     </span>
     <span *ngIf="player.position == 2">
       <ion-input placeholder="Player 2" class="toolbar-input" [(ngModel)]="gameService.game.player2Name"></ion-input> <!--When text is entered, run setName-->
-      <ion-input placeholder="Commander 1" [(ngModel)]="gameService.game.player1Commander2"></ion-input>
+      <ion-input placeholder="Commander 1" [(ngModel)]="gameService.game.player1Commander1"></ion-input>
       <ion-input placeholder="Commander 2" *ngIf="gameService.game.player2Partners" [(ngModel)]="gameService.game.player2Commander2"></ion-input>
     </span>
     <span *ngIf="player.position == 3">
@@ -45,6 +45,7 @@
   <div class="profile-text">Color</div>
   <div class="colorPicker" id="colorPicker" [ngStyle]="{'background' : player.color}" routerLink="/color-picker"></div>
   </ion-row>
+  
   <ion-row>
   <ion-col class="infect-label">
     Infect
@@ -59,8 +60,9 @@
     +
   </ion-col>
   </ion-row>
-
-  <ion-col>Commander Damage</ion-col>
+  <ion-col>
+    <h4>Commander Damage</h4>
+  </ion-col>
   <ion-row *ngIf="player.position != 1">
     <ion-col class="commander-label">
       {{gameService.game.player1Commander1}} :

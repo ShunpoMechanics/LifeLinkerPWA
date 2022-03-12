@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Player } from '../models/player';
 import { GameService } from '../services/game/game.service';
 import { PlayerProfileService } from '../services/playerProfile/player-service.service';
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -10,23 +10,17 @@ import { PlayerProfileService } from '../services/playerProfile/player-service.s
 })
 export class ProfilePage implements OnInit {
 
-  constructor(public playerProfileService: PlayerProfileService, public gameService: GameService) { }
+  constructor(public playerProfileService: PlayerProfileService, public gameService: GameService, private route: ActivatedRoute) {
+   }
 
   playerName: string;
   player: Player;
+  playerCount = 2;
 
   ngOnInit() {
     this.player = this.playerProfileService.player;
     this.playerName = this.gameService.getName(this.player.position);
-    // document.getElementById("colorPicker").style.backgroundColor = this.player.color;
   }
-
-  ionViewWillEnter() {
-    // document.getElementById("colorPicker").style.backgroundColor = this.player.color;
-  }
-  // setName(name: string) {
-  //   this.gameService.setName(this.player.position, name);
-  // }
 
   togglePartners() {
     this.player.partners = !this.player.partners;
@@ -132,5 +126,9 @@ export class ProfilePage implements OnInit {
             break;
         }
         }
+      
+  setPlayer(player: Player, playerName: string) {
+    this.playerProfileService.setPlayer(player, playerName);
+  }
   }
 

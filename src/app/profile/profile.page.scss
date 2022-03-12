@@ -9,6 +9,10 @@
     display: inline-block;
 }
 
+ion-row {
+    padding-left: 8px;
+}
+
 @media screen and (orientation: portrait) {
     ion-input {
         max-width: 156px;
@@ -44,6 +48,7 @@ ion-back-button {
 ion-content {
     font-size: large;
     font-family: Arial;
+    padding: 16px;
 }
 
 /* ipad Mini Landscape */
