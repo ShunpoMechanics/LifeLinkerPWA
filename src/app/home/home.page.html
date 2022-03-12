@@ -47,18 +47,18 @@
             </ion-col>
             <ion-col id="p1LifeUp"> + </ion-col>
           </ion-col>
-          <!-- Player 2 -->
+          <!-- Player 3 -->
           <ion-col
-            id="player2"
+            id="player3"
             class="playerbox"
-            [ngStyle]="{'background' : p2.color, 'color' : fontColor(p2.color), 'display' : hideOrShow(3)}"
+            [ngStyle]="{'background' : p3.color, 'color' : fontColor(p3.color), 'display' : hideOrShow(3)}"
           >
-            <label class="namebox">{{gameService.game.player2Name}}</label>
-            <ion-col id="p2LifeDown"> - </ion-col>
-            <ion-col routerLink="/profile" (click)="this.setPlayer(p2, p2Name)">
-              {{p2.life}}
+            <label class="namebox">{{gameService.game.player3Name}}</label>
+            <ion-col id="p3LifeDown"> - </ion-col>
+            <ion-col routerLink="/profile" (click)="this.setPlayer(p3, p3Name)">
+              {{p3.life}}
             </ion-col>
-            <ion-col id="p2LifeUp"> + </ion-col>
+            <ion-col id="p3LifeUp"> + </ion-col>
           </ion-col>
           <!-- Player 5 -->
           <ion-col
@@ -76,19 +76,19 @@
         </ion-row>
 
         <ion-row>
-          <!-- Player 3 -->
-          <ion-col
-            id="player3"
-            class="playerbox"
-            [ngStyle]="{'background' : p3.color, 'color' : fontColor(p3.color), 'display' : 'flex'}"
-          >
-            <label class="namebox">{{gameService.game.player3Name}}</label>
-            <ion-col id="p3LifeDown"> - </ion-col>
-            <ion-col routerLink="/profile" (click)="this.setPlayer(p3, p3Name)">
-              {{p3.life}}
-            </ion-col>
-            <ion-col id="p3LifeUp"> + </ion-col>
-          </ion-col>
+        <!-- Player 2 -->
+        <ion-col
+        id="player2"
+        class="playerbox"
+        [ngStyle]="{'background' : p2.color, 'color' : fontColor(p2.color), 'display' : 'flex'}"
+        >
+        <label class="namebox">{{gameService.game.player2Name}}</label>
+        <ion-col id="p2LifeDown"> - </ion-col>
+        <ion-col routerLink="/profile" (click)="this.setPlayer(p2, p2Name)">
+          {{p2.life}}
+        </ion-col>
+        <ion-col id="p2LifeUp"> + </ion-col>
+        </ion-col>
 
           <!-- Player 4 -->
           <ion-col

@@ -55,6 +55,12 @@ export class ProfilePage implements OnInit {
       case 4:
         this.player.commanderDamageFromPlayer4First++;
         break;
+      case 5:
+        this.player.commanderDamageFromPlayer5First++;
+        break;
+      case 6:
+        this.player.commanderDamageFromPlayer6First++;
+        break;
       }
     }
 
@@ -71,6 +77,13 @@ export class ProfilePage implements OnInit {
         break;
       case 4:
         this.player.commanderDamageFromPlayer4Second++;
+        break;
+      case 5:
+        this.player.commanderDamageFromPlayer5Second++;
+        break;
+      case 6:
+        this.player.commanderDamageFromPlayer6Second++;
+        break;
     }
   }
 
@@ -88,6 +101,12 @@ export class ProfilePage implements OnInit {
         case 4:
           this.player.commanderDamageFromPlayer4First--;
           break;
+        case 5:
+          this.player.commanderDamageFromPlayer5First--;
+          break;
+        case 6:
+          this.player.commanderDamageFromPlayer6First--;
+          break;
       }
       }
 
@@ -104,6 +123,12 @@ export class ProfilePage implements OnInit {
             break;
           case 4:
             this.player.commanderDamageFromPlayer4Second--;
+            break;
+          case 5:
+            this.player.commanderDamageFromPlayer5Second--;
+            break;
+          case 6:
+            this.player.commanderDamageFromPlayer6Second--;
             break;
         }
         }

@@ -160,6 +160,7 @@ export class HomePage implements OnInit {
   ngOnInit(): void {
     this.initUpdater();
     this.initListeners();
+    this.gameService.game.playerCount = 2;
   }
 
   initListeners() {

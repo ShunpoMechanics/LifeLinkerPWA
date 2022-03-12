@@ -98,7 +98,7 @@
     +
   </ion-col>
 </ion-row>
-<ion-row *ngIf="player.position != 2 && gameService.game.playerCount > 2">
+<ion-row *ngIf="player.position != 2">
   <ion-col class="commander-label">
     {{gameService.game.player2Commander1}} :
   </ion-col>
@@ -124,7 +124,7 @@
     +
   </ion-col>
 </ion-row>
-<ion-row *ngIf="player.position != 3">
+<ion-row *ngIf="player.position != 3 && gameService.game.playerCount > 2">
   <ion-col class="commander-label">
     {{gameService.game.player3Commander1}} :
   </ion-col>
