@@ -173,16 +173,6 @@ export class HomePage implements OnInit {
   ngOnInit(): void {
     this.initUpdater();
     this.orientation = screen.orientation.type;
-   
-    if(this.orientation.includes("landscape"))
-    {
-      this.gameService.game.player1color = 'black';
-      this.gameService.game.player4color = 'black';
-      this.gameService.game.player5color = 'black';
-      this.gameService.game.player2color = 'white';
-      this.gameService.game.player3color = 'white';
-      this.gameService.game.player6color = 'white';
-    }
 
     if(this.quickstart)
     {
@@ -192,8 +182,7 @@ export class HomePage implements OnInit {
       this.p4.color = this.gameService.game.player4color;
       this.p5.color = this.gameService.game.player5color;
       this.p6.color = this.gameService.game.player6color;
-      console.log(this.gameService.game.guidedStart)
-      this.playerCount = this.gameService.game.guidedStart ? this.gameService.game.playerCount : 2;
+      // this.playerCount = this.gameService.game.guidedStart ? this.gameService.game.playerCount : 2;
     }
   }
 
@@ -492,7 +481,7 @@ export class HomePage implements OnInit {
     this.gameService.game.player4color = this.p4.color;
     this.gameService.game.player5color = this.p5.color;
     this.gameService.game.player6color = this.p6.color;
-    this.router.navigate(["/home/true"]);
+    this.router.navigateByUrl("/home/true");
     // document.getElementById("guidedstart").style.display = 'none';
     // if(this.orientation.includes("landscape"))
     //   document.getElementById('landscape').style.display = 'block';
